@@ -6,7 +6,6 @@ var os = require('os');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var markdownServe = require('markdown-serve');
-var request = require('request')
 var fs = require('fs');
 var app = express();
 var marked = require('marked');
@@ -26,10 +25,17 @@ if ('development' == app.get('env')) {
 
 app.get('/:filename', function (req, res) {
   var filename = req.params.filename;
-  var content = fs.readFileSync('../markdown/' + filename + '.md', "utf8");
-  // Using async version of marked 
-  marked(content, function (err, content) {
-    res.render('markdown', { markdown: marked(content) });
+  var serverFilepath = path.resolve(__dirname, '../markdown/' + filename + '.md');
+  fs.access(serverFilepath, fs.F_OK, function (err) {
+    if (!err) {
+      var content = fs.readFileSync(serverFilepath, "utf8");
+      // Using async version of marked 
+      marked(content, function (err, content) {
+        res.render('markdown', { markdown: marked(content) });
+      });
+    } else {
+      res.send('File not found:' + filename);
+    }
   });
 });
 
