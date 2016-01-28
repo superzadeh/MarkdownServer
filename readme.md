@@ -14,7 +14,7 @@ Drop files in the ./markdown folder, and access them by file name without the ex
 http://localhost:3000/example
 ```
  
- ## Hosting on IIS
+## Hosting on IIS
  
 This server comes with a preconfigured web.config file as well as an issnode.yml. To host this site in IIS:
  * Clone/copy the content of this repo in a IIS WebSite.
