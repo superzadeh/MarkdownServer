@@ -5,7 +5,6 @@ var path = require('path');
 var os = require('os');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');
-var markdownServe = require('markdown-serve');
 var fs = require('fs');
 var app = express();
 var marked = require('marked');
