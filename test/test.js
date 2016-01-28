@@ -6,5 +6,9 @@ request(app)
   .expect('Content-Type', 'text/html; charset=utf-8')
   .expect(200)
   .end(function (err, res) {
-    if (err) throw err;
+    if (err) 
+    {
+      throw err;
+    }
+    console.info('Test run completed');
   });
