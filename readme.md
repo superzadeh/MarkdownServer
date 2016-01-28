@@ -5,6 +5,8 @@ A simple HTTP server that serves markdown files.
 ## Usage
 Install dependencies, then start the server.
 ```
+git clone https://github.com/superzadeh/MarkdownServer 
+cd MarkdownServer
 npm install
 npm start
 ```
@@ -24,3 +26,6 @@ This server comes with a preconfigured web.config file as well as an issnode.yml
  * Run `npm install` to install dependencies
  * Customize the default `web.config` (enable authentication, etc.)
  * Customize the default `issnode.yml` file (disable dev errors, etc.)
+
+## Contributions
+Pull requests are welcome, as long you keep this thing simple. I want it to be and remain a very simple solution to serve markdown files.
