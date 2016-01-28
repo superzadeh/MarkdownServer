@@ -5,7 +5,7 @@
 # environment variable; the default is the value of the IIS worker process'es NODE_ENV
 # environment variable
 
-node_env:
+node_env: 'production'
 
 # nodeProcessCommandLine - command line starting the node executable; in shared
 # hosting environments this setting would typically be locked at the machine scope.

@@ -3,23 +3,23 @@
 var express = require('express');
 var path = require('path');
 var os = require('os');
-var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var fs = require('fs');
-var app = express();
+var logger = require('morgan');
 var marked = require('marked');
+var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.resolve(__dirname, '../views'));
 app.set('view engine', 'jade');
-app.use(logger('dev'));
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 // development only
-if ('development' == app.get('env')) {
+if (process.env.NODE_ENV === 'development') {
   app.use(errorHandler());
   app.set('host', 'http://localhost');
+  app.use(logger('dev'));
 }
 
 app.get('/:filename', function (req, res) {
@@ -33,7 +33,7 @@ app.get('/:filename', function (req, res) {
         res.render('markdown', { markdown: marked(content) });
       });
     } else {
-      res.send('File not found:' + filename);
+      res.status(200).send('File not found: ' + filename);
     }
   });
 });
