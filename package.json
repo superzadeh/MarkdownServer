@@ -2,9 +2,10 @@
   "name": "markdownserver",
   "version": "0.0.1",
   "description": "Simple markdown server with highlighting",
-  "main": "src/server.js",
+  "main": "src/listen.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/listen.js",
+    "test": "node test/test.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
     "jade": "^1.11.0",
     "marked": "^0.3.5",
     "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "supertest": "^1.1.0"
   }
 }
