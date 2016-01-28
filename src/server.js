@@ -12,7 +12,7 @@ var app = express();
 var marked = require('marked');
 
 // all environments
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.resolve(__dirname, '../views'));
 app.set('view engine', 'jade');
 app.use(logger('dev'));
@@ -26,7 +26,7 @@ if ('development' == app.get('env')) {
 
 app.get('/:filename', function (req, res) {
   var filename = req.params.filename;
-  var content = fs.readFileSync('guides/' + filename + '.md', "utf8");
+  var content = fs.readFileSync('markdown/' + filename + '.md', "utf8");
   // Using async version of marked 
   marked(content, function (err, content) {
     res.render('markdown', { markdown: marked(content) });

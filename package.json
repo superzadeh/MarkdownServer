@@ -4,7 +4,6 @@
   "description": "Simple markdown server with highlighting",
   "main": "src/server.js",
   "scripts": {
-    "test": "test",
     "start": "node src/server.js"
   },
   "repository": {
