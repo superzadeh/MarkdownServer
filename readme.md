@@ -27,5 +27,11 @@ This server comes with a preconfigured web.config file as well as an issnode.yml
  * Customize the default `web.config` (enable authentication, etc.)
  * Customize the default `issnode.yml` file (disable dev errors, etc.)
 
+## Configuration
+
+By default, all files within the folder ./markdown will be served. This folder can be changed by 
+setting the environment variable `MARKDOWN_FOLDER`.
+
 ## Contributions
-Pull requests are welcome, as long you keep this thing simple. I want it to be and remain a very simple solution to serve markdown files.
+Pull requests are welcome, as long you keep this thing simple. I want it to be and remain a very 
+simple solution to serve markdown files.
