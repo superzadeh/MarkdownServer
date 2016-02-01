@@ -1,5 +1,8 @@
 extends layout
- 
+block sidebar 
+    #sidebar(class="ui visible left sidebar")
+        != sidebar
+        
 block content
-    #content
+    #content(class="pusher ui container")
         != markdown

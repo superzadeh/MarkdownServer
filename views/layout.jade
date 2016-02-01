@@ -6,10 +6,12 @@ html(lang="en-US")
         meta(name="viewport", content="width=device-width, initial-scale=1")
         link(rel='stylesheet', href='css/github-gist.min.css')
         link(rel="stylesheet", href="css/style.css")
-        script(src='js/highlight.min.js')        
+        link(rel="stylesheet", href="dist/semantic.min.css")
+        script(src='js/highlight.min.js')  
+        script(src='dist/semantic.min.js')        
         script.
           hljs.initHighlightingOnLoad();
-    body
-
-        block content
+    body  
+    block sidebar         
+    block content
         
