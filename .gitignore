@@ -1,6 +1,7 @@
 # NodeJS
 node_modules
 build
+typings
 
 # Windows image file caches
 Thumbs.db
