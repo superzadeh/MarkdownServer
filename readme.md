@@ -1,4 +1,5 @@
 # Markdown Server
+[![Build Status](https://travis-ci.org/superzadeh/MarkdownServer.svg?branch=master)](https://travis-ci.org/superzadeh/MarkdownServer)
 
 A simple HTTP server that serves markdown files.
 
