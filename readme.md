@@ -19,7 +19,8 @@ http://localhost:3000/example
  
 ## Hosting on IIS
  
-This server comes with a preconfigured web.config file as well as an issnode.yml. To host this site in IIS:
+This server comes with a preconfigured web.config file as well as an issnode.yml. 
+To host this site in IIS:
  * Clone/copy the content of this repo in a IIS WebSite.
  * Install [iisnode](https://github.com/tjanczuk/iisnode)
  * Make sure you application's pool identity has read/write permissions to the site's folder
@@ -36,3 +37,13 @@ setting the environment variable `MARKDOWN_FOLDER`.
 ## Contributions
 Pull requests are welcome, as long you keep this thing simple. I want it to be and remain a very 
 simple solution to serve markdown files.
+
+### Visual Studio Code
+This project is optimized for edition within [Visual Studio Code](https://code.visualstudio.com/).
+make sure to run `tsd install` to retrieve all the typings. This will provide you with
+Intellisense for the frameworks used in this project.
+
+```
+npm install tsd -g
+tsd install
+```
