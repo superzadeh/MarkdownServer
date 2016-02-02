@@ -50,3 +50,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#semantic
+semantic/dist/*
+semantic/tasks/*
