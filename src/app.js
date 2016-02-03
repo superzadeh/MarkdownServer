@@ -31,7 +31,9 @@ app.get('/:filename', function (req, res) {
       var content = fs.readFileSync(serverFilepath, "utf8");
       // Using async version of marked 
       marked(content, function (err, contentMarked) {
-      res.render('markdown', { markdown: marked(contentMarked), sidebar:marked(toc(content).content)});
+        var markdownContent = marked(contentMarked);
+        var sideBarContent = marked(toc(content).content);
+        res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     } else {
       res.status(200).send('File not found: ' + filename);

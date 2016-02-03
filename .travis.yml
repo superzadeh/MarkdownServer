@@ -1,9 +1,9 @@
 language: node_js
 node_js: "stable"
+before_install:
+  - npm install -g gulp
 install: 
   - npm install
   - gulp build
-before_script:
-  - npm install -g gulp
 script: 
   - npm test
