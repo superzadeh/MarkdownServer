@@ -10,6 +10,5 @@ addons:
     - g++-4.8
 before_install:
   - npm install -g gulp
-  - npm install
 before_script: 
   - gulp build
