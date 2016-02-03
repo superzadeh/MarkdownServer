@@ -54,3 +54,4 @@ Temporary Items
 #semantic
 semantic/dist/*
 semantic/tasks/*
+public/dist/*
