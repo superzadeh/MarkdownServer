@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "command": "gulp",
+  "isShellCommand": true,
+  "tasks": [
+    {
+      "taskName": "serve-dev",
+      "isBuildCommand": false,
+      "isTestCommand": true,
+      "showOutput": "always",
+      "args": []
+    },
+    {
+      "taskName": "serve-build",
+      "isBuildCommand": false,
+      "isTestCommand": true,
+      "showOutput": "always",
+      "args": []
+    }
+  ]
+}

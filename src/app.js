@@ -7,6 +7,7 @@ var logger = require('morgan');
 var marked = require('marked');
 var constants = require('./constants')
 var app = express();
+var toc = require('markdown-toc');
 
 // all environments
 app.set(constants.PORT, process.env.PORT || 3000);
@@ -29,8 +30,10 @@ app.get('/:filename', function (req, res) {
     if (!err) {
       var content = fs.readFileSync(serverFilepath, "utf8");
       // Using async version of marked 
-      marked(content, function (err, content) {
-        res.render('markdown', { markdown: marked(content) });
+      marked(content, function (err, contentMarked) {
+        var markdownContent = marked(contentMarked);
+        var sideBarContent = marked(toc(content).content);
+        res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     } else {
       res.status(200).send('File not found: ' + filename);
