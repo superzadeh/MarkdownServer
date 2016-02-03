@@ -9,15 +9,18 @@ Install dependencies, then start the server.
 ```
 git clone https://github.com/superzadeh/MarkdownServer 
 cd MarkdownServer
+npm install gulp -g
 npm install
-npm start
+gulp serve-dev
 ```
-
 Drop files in the ./markdown folder, and access them by file name without the extension. 
 ```
 http://localhost:3000/example
 ```
- 
+
+The `serve-dev`task will start nodemon to automatically restart the server if server code changes, as well as browsersync to refresh if the views or markdown files are updated.
+This means that you can also use this as a live previewer of your markdown files.
+
 ## Hosting on IIS
  
 This server comes with a preconfigured web.config file as well as an issnode.yml. 
