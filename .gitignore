@@ -51,7 +51,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#semantic
+# Semantic
 semantic/dist/*
-semantic/tasks/*
 public/dist/*
