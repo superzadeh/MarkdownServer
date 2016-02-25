@@ -32,7 +32,10 @@ gulp.task('nodemon', function (cb) {
 });
 
 gulp.task('build', ['build-ui'], function () {
-  return gulp.src('./node_modules/jquery/dist/').pipe(gulp.dest('./public/dist/'));
+  return gulp.src([
+    './node_modules/jquery/dist/jquery.min.js',
+    './node_modules/highlightjs/highlight.pack.min.js'
+  ]).pipe(gulp.dest('./public/dist'));
 });
 
 gulp.task('serve-dev', ['browser-sync', 'watch-ui']);
