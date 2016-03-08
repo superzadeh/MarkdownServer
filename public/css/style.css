@@ -1,3 +1,8 @@
+#content {
+  margin-left:15rem !important;
+  width: auto !important;
+}
+
 body {
     background: #fff;
     color: #333;
@@ -11,10 +16,6 @@ body {
     border-radius: 3px;
     margin: 0 auto;
     padding: 3px;
-    width: 784px;
-    /* project home width */
-    width: 920px;
-    /* specific file view width */
 }
 
 #markdown {
