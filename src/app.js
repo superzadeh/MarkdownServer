@@ -3,11 +3,11 @@ var path = require('path');
 var os = require('os');
 var errorHandler = require('errorhandler');
 var fs = require('fs');
+var request = require('request');
 var logger = require('morgan');
-var marked = require('marked');
-var constants = require('./constants')
+var constants = require('./constants');
+var markdownifier = require('./markdownifier');
 var app = express();
-var toc = require('markdown-toc');
 
 // all environments
 app.set(constants.PORT, process.env.PORT || 3000);
@@ -23,20 +23,31 @@ if (process.env.NODE_ENV === 'development') {
   app.use(logger('dev'));
 }
 
-app.get('/:filename', function (req, res) {
+// Load from local files
+app.get('/:filename', function(req, res) {
   var filename = req.params.filename;
   var serverFilepath = path.resolve(__dirname, app.get(constants.MARKDOWN_FOLDER) + filename + '.md');
-  fs.access(serverFilepath, fs.F_OK, function (err) {
+  fs.access(serverFilepath, fs.F_OK, function(err) {
     if (!err) {
       var content = fs.readFileSync(serverFilepath, "utf8");
-      // Using async version of marked 
-      marked(content, function (err, contentMarked) {
-        var markdownContent = marked(contentMarked);
-        var sideBarContent = marked(toc(content).content);
+      new markdownifier().markdownify(content, function(markdownContent, sideBarContent) {
         res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     } else {
-      res.status(200).send('File not found: ' + filename);
+      res.status(404).send('File not found: ' + filename);
+    }
+  });
+});
+
+// Load from external URLs
+app.get('/fromurl/:url', function(req, res) {
+  var response = request(req.params.url, function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      new markdownifier().markdownify(body, function(markdownContent, sideBarContent) {
+        res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
+      });
+    } else {
+      res.status(404).send('Not found: ' + request.params.url);
     }
   });
 });
