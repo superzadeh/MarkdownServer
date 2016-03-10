@@ -11,6 +11,7 @@ git clone https://github.com/superzadeh/MarkdownServer
 cd MarkdownServer
 npm install gulp -g
 npm install
+gulp build
 gulp serve-dev
 ```
 Drop files in the ./markdown folder, and access them by file name without the extension. 
