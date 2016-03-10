@@ -34,7 +34,8 @@ app.get('/:filename', function(req, res) {
         res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     } else {
-      res.status(404).send('File not found: ' + filename);
+      // reply 200 to still render a page, but indicate that the file was not found
+      res.status(200).send('File not found: ' + filename);
     }
   });
 });
