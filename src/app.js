@@ -44,9 +44,8 @@ app.get('/:filename', function(req, res) {
 app.get('/external/:filename', function(req, res) {
   var root = process.env.MARKDOWN_EXTERNAL_ROOT;
   if (root) {
-    var url = root + req.params.filename + '.md';
     httpntlm.get({
-      url: req.params.url,
+      url: root + req.params.filename + '.md',
       username: process.env.NTLM_USERNAME,
       password: process.env.NTLM_PASSWORD,
       domain: process.env.NTLM_DOMAIN
@@ -56,7 +55,7 @@ app.get('/external/:filename', function(req, res) {
           res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
         });
       } else {
-        res.status(200).send('External resource not found: ' + req.params.url);
+        res.status(200).send('External resource not found: ' + req.params.filename);
       }
     });
   } else {

@@ -1,64 +1,37 @@
 {
-"version": "0.1.0",
-// List of configurations. Add new configurations or edit existing ones.
-// ONLY "node" and "mono" are supported, change "type" to switch.
-"configurations": [
-    {
-        // Name of configuration; appears in the launch configuration drop down menu.
-        "name": "Debug src/app.js",
-        // Type of configuration. Possible values: "node", "mono".
-        "type": "node",
-        // Workspace relative or absolute path to the program.
-        "program": "src/app.js",
-        // Automatically stop program after launch.
-        "stopOnEntry": true,
-        // Command line arguments passed to the program.
-        "args": [],
-        // Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-        "cwd": ".",
-        // Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
-        "runtimeExecutable": null,
-        // Optional arguments passed to the runtime executable.
-        "runtimeArgs": [],
-        // Environment variables passed to the program.
-        "env": { },
-        // Use JavaScript source maps (if they exist).
-        "sourceMaps": false,
-        // If JavaScript source maps are enabled, the generated code is expected in this directory.
-        "outDir": null
-    },
-    {
-        // Name of configuration; appears in the launch configuration drop down menu.
-        "name": "Run src/app.js",
-        // Type of configuration. Possible values: "node", "mono".
-        "type": "node",
-        // Workspace relative or absolute path to the program.
-        "program": "src/app.js",
-        // Automatically stop program after launch.
-        "stopOnEntry": false,
-        // Command line arguments passed to the program.
-        "args": [],
-        // Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-        "cwd": ".",
-        // Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
-        "runtimeExecutable": null,
-        // Optional arguments passed to the runtime executable.
-        "runtimeArgs": [],
-        // Environment variables passed to the program.
-        "env": { },
-        // Use JavaScript source maps (if they exist).
-        "sourceMaps": false,
-        // If JavaScript source maps are enabled, the generated code is expected in this directory.
-        "outDir": null
-    },
-    {
-        "name": "Attach",
-        "type": "node",
-        // TCP/IP address. Default is "localhost".
-        "address": "localhost",
-        // Port to attach to.
-        "port": 5858,
-        "sourceMaps": false
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}\\src\\listen.js",
+			"stopOnEntry": false,
+			"args": [],
+			"cwd": "${workspaceRoot}",
+			"preLaunchTask": null,
+			"runtimeExecutable": null,
+			"runtimeArgs": [
+				"--nolazy"
+			],
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"externalConsole": false,
+			"sourceMaps": false,
+			"outDir": null
+		},
+		{
+			"name": "Attach",
+			"type": "node",
+			"request": "attach",
+			"port": 5858,
+			"address": "localhost",
+			"restart": false,
+			"sourceMaps": false,
+			"outDir": null,
+			"localRoot": "${workspaceRoot}",
+			"remoteRoot": null
+		}
+	]
 }
