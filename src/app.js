@@ -48,7 +48,7 @@ app.get('/fromurl/:url', function(req, res) {
         res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     } else {
-      res.status(404).send('Not found: ' + request.params.url);
+      res.status(200).send('Not found: ' + req.params.url);
     }
   });
 });
