@@ -3,7 +3,7 @@ var path = require('path');
 var os = require('os');
 var errorHandler = require('errorhandler');
 var fs = require('fs');
-var request = require('request');
+var httpntlm = require('httpntlm');
 var logger = require('morgan');
 var constants = require('./constants');
 var markdownifier = require('./markdownifier');
@@ -44,19 +44,25 @@ app.get('/:filename', function(req, res) {
 app.get('/external/:filename', function(req, res) {
   var root = process.env.MARKDOWN_EXTERNAL_ROOT;
   if (root) {
-    var response = request(root + req.params.filename+'.md', function(error, response, body) {
+    var url = root + req.params.filename + '.md';
+    httpntlm.get({
+      url: req.params.url,
+      username: process.env.NTLM_USERNAME,
+      password: process.env.NTLM_PASSWORD,
+      domain: process.env.NTLM_DOMAIN
+    }, function(error, response) {
       if (!error && response.statusCode == 200) {
-        new markdownifier().markdownify(body, function(markdownContent, sideBarContent) {
+        new markdownifier().markdownify(response.body, function(markdownContent, sideBarContent) {
           res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
         });
       } else {
-        res.status(200).send('Not found: ' + req.params.filename);
+        res.status(200).send('External resource not found: ' + req.params.url);
       }
     });
   } else {
     res.status(200).send('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
   }
-
 });
+
 
 module.exports = app;
