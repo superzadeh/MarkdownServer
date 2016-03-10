@@ -55,7 +55,7 @@ app.get('/external/:filename', function(req, res) {
           res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
         });
       } else {
-        res.status(200).send('External resource not found: ' + req.params.filename);
+        res.status(200).send('External resource could not be loaded: ' + req.params.filename);
       }
     });
   } else {
