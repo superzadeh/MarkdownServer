@@ -1,6 +1,7 @@
 # NodeJS
 node_modules
 typings
+markdown
 src/iisnode
 
 # Windows image file caches
