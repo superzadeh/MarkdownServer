@@ -1,6 +1,7 @@
 # NodeJS
 node_modules
 typings
+src/iisnode
 
 # Windows image file caches
 Thumbs.db

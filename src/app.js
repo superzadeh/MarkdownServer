@@ -41,16 +41,22 @@ app.get('/:filename', function(req, res) {
 });
 
 // Load from external URLs
-app.get('/fromurl/:url', function(req, res) {
-  var response = request(req.params.url, function(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      new markdownifier().markdownify(body, function(markdownContent, sideBarContent) {
-        res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
-      });
-    } else {
-      res.status(200).send('Not found: ' + req.params.url);
-    }
-  });
+app.get('/external/:filename', function(req, res) {
+  var root = process.env.MARKDOWN_EXTERNAL_ROOT;
+  if (root) {
+    var response = request(root + req.params.filename+'.md', function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        new markdownifier().markdownify(body, function(markdownContent, sideBarContent) {
+          res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
+        });
+      } else {
+        res.status(200).send('Not found: ' + req.params.filename);
+      }
+    });
+  } else {
+    res.status(200).send('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
+  }
+
 });
 
 module.exports = app;
