@@ -30,7 +30,7 @@ app.get('/:filename', function(req, res) {
   fs.access(serverFilepath, fs.F_OK, function(err) {
     if (!err) {
       var content = fs.readFileSync(serverFilepath, "utf8");
-      new markdownifier().markdownify(content, function(markdownContent, sideBarContent) {
+      markdownifier.markdownify(content, function(markdownContent, sideBarContent) {
         res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     } else {
