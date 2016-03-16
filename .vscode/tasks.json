@@ -4,7 +4,7 @@
   "isShellCommand": true,
   "tasks": [
     {
-      "taskName": "serve-dev",
+      "taskName": "watch-mocha",
       "isBuildCommand": false,
       "isTestCommand": true,
       "showOutput": "always",
@@ -12,7 +12,7 @@
     },
     {
       "taskName": "serve-build",
-      "isBuildCommand": false,
+      "isBuildCommand": true,
       "isTestCommand": true,
       "showOutput": "always",
       "args": []

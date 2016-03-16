@@ -5,6 +5,7 @@ var errorHandler = require('errorhandler');
 var fs = require('fs');
 var httpntlm = require('httpntlm');
 var logger = require('morgan');
+var request = require('request');
 var constants = require('./constants');
 var markdownifier = require('./markdownifier');
 var app = express();
@@ -44,24 +45,38 @@ app.get('/:filename', function(req, res) {
 app.get('/external/:filename', function(req, res) {
   var root = process.env.MARKDOWN_EXTERNAL_ROOT;
   if (root) {
-    httpntlm.get({
-      url: root + req.params.filename + '.md',
-      username: process.env.NTLM_USERNAME,
-      password: process.env.NTLM_PASSWORD,
-      domain: process.env.NTLM_DOMAIN
-    }, function(error, response) {
-      if (!error && response.statusCode == 200) {
-        new markdownifier().markdownify(response.body, function(markdownContent, sideBarContent) {
-          res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
-        });
-      } else {
-        res.status(200).send('External resource could not be loaded: ' + req.params.filename);
+    var targetUrl = root + req.params.filename + '.md';
+
+    if (process.env.NTLM_USERNAME && process.env.NTLM_PASSWORD && process.env.NTLM_DOMAIN) {
+      var options = {
+        url: targetUrl,
+        username: process.env.NTLM_USERNAME,
+        password: process.env.NTLM_PASSWORD,
+        domain: process.env.NTLM_DOMAIN
       }
-    });
+      httpntlm.get(options, function(error, response) {
+        if (!error && response.statusCode === 200) {
+          markdownifier.markdownify(response.body, function(markdownContent, sideBarContent) {
+            res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
+          });
+        } else {
+          res.status(200).send('File not found: ' + req.params.filename);
+        }
+      });
+    } else {
+      request.get(targetUrl, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+          markdownifier.markdownify(body, function(markdownContent, sideBarContent) {
+            res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
+          });
+        } else {
+          res.status(200).send('File not found: ' + req.params.filename);
+        }
+      });
+    }
   } else {
     res.status(200).send('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
   }
 });
-
 
 module.exports = app;
