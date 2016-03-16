@@ -40,7 +40,7 @@ gulp.task('build', ['build-ui'], function() {
 });
 
 gulp.task('mocha', function() {
-  return gulp.src(['test/*.js'], {})
+  return gulp.src(['test/*.spec.js'], {})
     .pipe(mocha());
 });
 
