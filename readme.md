@@ -59,6 +59,16 @@ the name of the environment variable and the value is its value.
 Pull requests are welcome, as long you keep this thing simple. I want it to be and remain a very 
 simple solution to serve markdown files.
 
+### TODO
+- [] Implement NTLM tests
+- [] Improve the sidebar: make it collapsible and make the content good looking
+- [] Expose the table of content of a file through a JSON API
+- [] Add a search feature
+- [] Add FTP support
+- [] Add an administration UI to setup NTLM & FTP parameters
+- [] Provide a more secure way to store credentials
+- [] Allow users to upload files to be served
+
 ### Visual Studio Code
 This project is optimized for edition within [Visual Studio Code](https://code.visualstudio.com/).
 make sure to run `tsd install` to retrieve all the typings. This will provide you with
@@ -68,3 +78,4 @@ Intellisense for the frameworks used in this project.
 npm install tsd -g
 tsd install
 ```
+
