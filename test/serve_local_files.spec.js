@@ -1,7 +1,7 @@
+var setup =  require('./setup.js');
 var request = require('supertest');
 var assert = require('assert');
 var app = require('../src/app');
-var setup =  require('./setup.js')
 
 describe('GET /test', function() {
   it('should return 200', function(done) {
@@ -25,13 +25,10 @@ describe('GET /test', function() {
       });
   });
   it('should transform markdown to HTML', function(done) {
-    var expectedContent = '<h1 id="test-title">Test Title</h1>';
     request(app)
-      .get('/test')
-      
+      .get('/test')      
       .end(function(err, res) {
-        assert(res.text.indexOf(expectedContent) > 0, 
-        'Expected the response to contain "' + expectedContent + '", the response received was:\n' + res.text);
+        res.text.should.match(/<h1 id="test-title">Test Title<\/h1>/);
         done();
       });
   });
@@ -56,7 +53,7 @@ describe('GET /notfound', function() {
         if (err) {
           throw err;
         }
-        assert.equal(res.text, 'File not found: notfound');
+        res.text.should.match(/File not found/);
         done();
       });
   });

@@ -1,9 +1,9 @@
+var setup = require('./setup.js');
 var request = require('supertest');
 var assert = require('assert');
 var chai = require('chai').should();
 var nock = require('nock');
 var app = require('../src/app');
-var setup = require('./setup.js')
 
 describe('GET /external/test', function() {
 
