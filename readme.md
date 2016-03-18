@@ -61,6 +61,7 @@ simple solution to serve markdown files.
 
 ### TODO
 - [ ] Implement NTLM tests
+- [ ] Add bluebird and promisify all the things
 - [ ] Improve the sidebar: make it collapsible and make the content good looking
 - [ ] Expose the table of content of a file through a JSON API
 - [ ] Add a search feature
