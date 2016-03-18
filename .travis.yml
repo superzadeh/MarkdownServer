@@ -11,4 +11,10 @@ addons:
 before_install:
   - npm install -g gulp
 before_script: 
+  - npm install -g istanbul 
+  - npm install -g mocha
   - gulp build
+script: 
+  - npm run-script test-travis
+after_script: 
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
