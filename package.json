@@ -14,6 +14,7 @@
   "author": "Superzadeh",
   "license": "WTFPL",
   "dependencies": {
+    "bluebird": "^3.3.4",
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
     "highlightjs": "^8.7.0",

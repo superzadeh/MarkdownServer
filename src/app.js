@@ -1,8 +1,9 @@
+var bluebird = require('bluebird');
 var express = require('express');
 var path = require('path');
 var os = require('os');
 var errorHandler = require('errorhandler');
-var fs = require('fs');
+var fs = bluebird.promisifyAll(require('fs'));
 var httpntlm = require('httpntlm');
 var logger = require('morgan');
 var request = require('request');
@@ -28,17 +29,19 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/:filename', function(req, res) {
   var filename = req.params.filename;
   var serverFilepath = path.resolve(__dirname, app.get(constants.MARKDOWN_FOLDER) + filename + '.md');
-  fs.access(serverFilepath, fs.F_OK, function(err) {
-    if (!err) {
-      var content = fs.readFileSync(serverFilepath, "utf8");
+  fs.accessAsync(serverFilepath, fs.F_OK)
+    .then(function() {
+      return fs.readFileAsync(serverFilepath, "utf8");
+    })
+    .then(function(content) {
       markdownifier.markdownify(content, function(markdownContent, sideBarContent) {
         res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
-    } else {
+    })
+    .catch(function(err) {
       // reply 200 to still render a page, but indicate that the file was not found
       res.status(200).send('File not found: ' + filename);
-    }
-  });
+    });
 });
 
 // Load from external URLs

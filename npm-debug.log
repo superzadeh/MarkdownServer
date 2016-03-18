@@ -1,0 +1,110 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\cahmadzadeh\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'shrinkwrap' ]
+2 info using npm@3.8.0
+3 info using node@v4.4.0
+4 warn shrinkwrap Excluding devDependency: gulp-mocha@2.2.0 { bluebird: '^3.3.4',
+4 warn shrinkwrap   errorhandler: '^1.4.3',
+4 warn shrinkwrap   express: '^4.13.4',
+4 warn shrinkwrap   highlightjs: '^8.7.0',
+4 warn shrinkwrap   httpntlm: '^1.5.3',
+4 warn shrinkwrap   jade: '^1.11.0',
+4 warn shrinkwrap   jquery: '^2.2.0',
+4 warn shrinkwrap   'markdown-toc': '^0.12.3',
+4 warn shrinkwrap   marked: '^0.3.5',
+4 warn shrinkwrap   morgan: '^1.6.1',
+4 warn shrinkwrap   request: '^2.69.0',
+4 warn shrinkwrap   'semantic-ui': '^2.1.8' }
+5 warn shrinkwrap Excluding devDependency: nock@7.2.2 { bluebird: '^3.3.4',
+5 warn shrinkwrap   errorhandler: '^1.4.3',
+5 warn shrinkwrap   express: '^4.13.4',
+5 warn shrinkwrap   highlightjs: '^8.7.0',
+5 warn shrinkwrap   httpntlm: '^1.5.3',
+5 warn shrinkwrap   jade: '^1.11.0',
+5 warn shrinkwrap   jquery: '^2.2.0',
+5 warn shrinkwrap   'markdown-toc': '^0.12.3',
+5 warn shrinkwrap   marked: '^0.3.5',
+5 warn shrinkwrap   morgan: '^1.6.1',
+5 warn shrinkwrap   request: '^2.69.0',
+5 warn shrinkwrap   'semantic-ui': '^2.1.8' }
+6 verbose stack Error: Problems were encountered
+6 verbose stack Please correct and try again.
+6 verbose stack extraneous: better-console@0.2.4 c:\inetpub\wwwroot\MarkdownServer\node_modules\better-console
+6 verbose stack extraneous: browser-sync@2.11.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\browser-sync
+6 verbose stack extraneous: del@2.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\del
+6 verbose stack extraneous: gulp-autoprefixer@3.1.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-autoprefixer
+6 verbose stack extraneous: gulp-chmod@1.3.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-chmod
+6 verbose stack extraneous: gulp-clone@1.0.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-clone
+6 verbose stack extraneous: gulp-concat@2.6.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-concat
+6 verbose stack extraneous: gulp-concat-css@2.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-concat-css
+6 verbose stack extraneous: gulp-copy@0.0.2 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-copy
+6 verbose stack extraneous: gulp-dedupe@0.0.2 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-dedupe
+6 verbose stack extraneous: gulp-flatten@0.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-flatten
+6 verbose stack extraneous: gulp-header@1.7.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-header
+6 verbose stack extraneous: gulp-help@1.6.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-help
+6 verbose stack extraneous: gulp-if@2.0.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-if
+6 verbose stack extraneous: gulp-less@3.0.5 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-less
+6 verbose stack extraneous: gulp-minify-css@1.2.4 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-minify-css
+6 verbose stack extraneous: gulp-nodemon@2.0.6 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-nodemon
+6 verbose stack extraneous: gulp-notify@2.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-notify
+6 verbose stack extraneous: gulp-plumber@1.1.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-plumber
+6 verbose stack extraneous: gulp-print@2.0.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-print
+6 verbose stack extraneous: gulp-rename@1.2.2 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-rename
+6 verbose stack extraneous: gulp-replace@0.5.4 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-replace
+6 verbose stack extraneous: gulp-rtlcss@1.0.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-rtlcss
+6 verbose stack extraneous: gulp-uglify@1.5.3 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-uglify
+6 verbose stack extraneous: gulp-watch@4.3.5 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-watch
+6 verbose stack extraneous: require-dot-file@0.4.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\require-dot-file
+6 verbose stack extraneous: run-sequence@1.1.5 c:\inetpub\wwwroot\MarkdownServer\node_modules\run-sequence
+6 verbose stack extraneous: supertest@1.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\supertest
+6 verbose stack extraneous: yamljs@0.2.6 c:\inetpub\wwwroot\MarkdownServer\node_modules\yamljs
+6 verbose stack     at shrinkwrap_ (C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\lib\shrinkwrap.js:101:15)
+6 verbose stack     at C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\lib\shrinkwrap.js:36:5
+6 verbose stack     at C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\node_modules\iferr\index.js:13:50
+6 verbose stack     at C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\lib\install\deps.js:121:5
+6 verbose stack     at LOOP (C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\node_modules\slide\lib\chain.js:7:26)
+6 verbose stack     at C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\node_modules\slide\lib\chain.js:18:7
+6 verbose stack     at cb (C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+6 verbose stack     at C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\lib\install\deps.js:121:5
+6 verbose stack     at LOOP (C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\node_modules\slide\lib\chain.js:7:26)
+6 verbose stack     at C:\Users\cahmadzadeh\AppData\Roaming\npm\node_modules\npm\node_modules\slide\lib\chain.js:18:7
+7 verbose cwd c:\inetpub\wwwroot\MarkdownServer
+8 error Windows_NT 6.1.7601
+9 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\cahmadzadeh\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "shrinkwrap"
+10 error node v4.4.0
+11 error npm  v3.8.0
+12 error Problems were encountered
+12 error Please correct and try again.
+12 error extraneous: better-console@0.2.4 c:\inetpub\wwwroot\MarkdownServer\node_modules\better-console
+12 error extraneous: browser-sync@2.11.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\browser-sync
+12 error extraneous: del@2.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\del
+12 error extraneous: gulp-autoprefixer@3.1.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-autoprefixer
+12 error extraneous: gulp-chmod@1.3.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-chmod
+12 error extraneous: gulp-clone@1.0.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-clone
+12 error extraneous: gulp-concat@2.6.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-concat
+12 error extraneous: gulp-concat-css@2.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-concat-css
+12 error extraneous: gulp-copy@0.0.2 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-copy
+12 error extraneous: gulp-dedupe@0.0.2 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-dedupe
+12 error extraneous: gulp-flatten@0.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-flatten
+12 error extraneous: gulp-header@1.7.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-header
+12 error extraneous: gulp-help@1.6.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-help
+12 error extraneous: gulp-if@2.0.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-if
+12 error extraneous: gulp-less@3.0.5 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-less
+12 error extraneous: gulp-minify-css@1.2.4 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-minify-css
+12 error extraneous: gulp-nodemon@2.0.6 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-nodemon
+12 error extraneous: gulp-notify@2.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-notify
+12 error extraneous: gulp-plumber@1.1.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-plumber
+12 error extraneous: gulp-print@2.0.1 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-print
+12 error extraneous: gulp-rename@1.2.2 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-rename
+12 error extraneous: gulp-replace@0.5.4 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-replace
+12 error extraneous: gulp-rtlcss@1.0.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-rtlcss
+12 error extraneous: gulp-uglify@1.5.3 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-uglify
+12 error extraneous: gulp-watch@4.3.5 c:\inetpub\wwwroot\MarkdownServer\node_modules\gulp-watch
+12 error extraneous: require-dot-file@0.4.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\require-dot-file
+12 error extraneous: run-sequence@1.1.5 c:\inetpub\wwwroot\MarkdownServer\node_modules\run-sequence
+12 error extraneous: supertest@1.2.0 c:\inetpub\wwwroot\MarkdownServer\node_modules\supertest
+12 error extraneous: yamljs@0.2.6 c:\inetpub\wwwroot\MarkdownServer\node_modules\yamljs
+13 error If you need help, you may report this error at:
+13 error     <https://github.com/npm/npm/issues>
+14 verbose exit [ 1, true ]
