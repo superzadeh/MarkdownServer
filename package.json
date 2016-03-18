@@ -5,8 +5,8 @@
   "main": "src/listen.js",
   "scripts": {
     "start": "gulp",
-    "test": "mocha",
-    "test-travis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/**/*.spec.js"
+    "test": "mocha -R spec ./test/**/*.spec.js",
+    "test-cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/**/*.spec.js"
   },
   "repository": {
     "type": "git",

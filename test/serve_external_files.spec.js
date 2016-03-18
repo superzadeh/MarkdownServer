@@ -94,5 +94,25 @@ describe('GET /external/notfound', function() {
         done();
       });
   });
+});
 
+describe('GET /external/*', function() {
+  var markdownRoot = process.env.MARKDOWN_EXTERNAL_ROOT;
+  
+  before(function() {
+    process.env.MARKDOWN_EXTERNAL_ROOT = '';
+  });
+
+  after(function() {
+    process.env.MARKDOWN_EXTERNAL_ROOT = markdownRoot;
+  })
+
+  it('should return an error if the MARKDOWN_EXTERNAL_ROOT env variable is not set', function(done) {
+    request(app)
+      .get('/external/whatever')
+      .end(function(err, res) {
+        res.text.should.equal('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
+        done();
+      });
+  });
 });
