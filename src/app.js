@@ -34,7 +34,7 @@ app.get('/:filename', function(req, res) {
       return fs.readFileAsync(serverFilepath, "utf8");
     })
     .then(function(content) {
-      markdownifier.markdownify(content, function(markdownContent, sideBarContent) {
+      markdownifier.markdownify(content).then(function(markdownContent, sideBarContent) {
         res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
       });
     })
@@ -59,7 +59,7 @@ app.get('/external/:filename', function(req, res) {
       }
       httpntlm.get(options, function(error, response) {
         if (!error && response.statusCode === 200) {
-          markdownifier.markdownify(response.body, function(markdownContent, sideBarContent) {
+          markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
             res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
           });
         } else {
@@ -69,7 +69,7 @@ app.get('/external/:filename', function(req, res) {
     } else {
       request.get(targetUrl, function(error, response, body) {
         if (!error && response.statusCode === 200) {
-          markdownifier.markdownify(body, function(markdownContent, sideBarContent) {
+          markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
             res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
           });
         } else {
