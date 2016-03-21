@@ -12,6 +12,10 @@ body {
     background: transparent;
 }
 
+.toc {
+    padding: 20px;
+}
+
 .toc ul {
     list-style: none;
     padding:0;
