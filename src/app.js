@@ -56,7 +56,7 @@ app.get('/external/:filename', function(req, res) {
         username: process.env.NTLM_USERNAME,
         password: process.env.NTLM_PASSWORD,
         domain: process.env.NTLM_DOMAIN
-      }
+      };
       httpntlm.get(options, function(error, response) {
         if (!error && response.statusCode === 200) {
           markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
