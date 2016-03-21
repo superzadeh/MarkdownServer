@@ -6,9 +6,9 @@ module.exports.markdownify = function markdownify(content) {
   return new Promise(function(resolve, reject) {
     marked.parseAsync(content)
       .then(function(contentMarked) {
-        var markdownContent = marked(contentMarked);
-        var sideBarContent = marked(toc(content).content);
-        resolve({ markdownContent, sideBarContent });
+        var markdown = marked(contentMarked);
+        var sidebar = marked(toc(content).content);
+        resolve({ markdown, sidebar });
       }).catch(function(err) {
         reject(err);
       });

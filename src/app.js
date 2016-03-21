@@ -36,7 +36,7 @@ app.get('/:filename', function(req, res) {
     })
     .then(function(content) {
       return markdownifier.markdownify(content).then(function(data) {
-        res.render('markdown', { markdown: data.markdownContent, sidebar: data.sideBarContent });
+        res.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
       });
     })
     .catch(function(err) {
@@ -73,8 +73,8 @@ app.get('/external/:filename', function(req, res) {
 
 function handleExternalResponse(error, response, expressRequest, expressResponse) {
   if (!error && response.statusCode === 200) {
-    return markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
-      expressResponse.render('markdown', { markdown: data.markdownContent, sidebar: data.sideBarContent });
+    return markdownifier.markdownify(response.body).then(function(data) {
+      expressResponse.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
     });
   } else {
     expressResponse.status(200).send('File not found: ' + expressRequest.params.filename);
