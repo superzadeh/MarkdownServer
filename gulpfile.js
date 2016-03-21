@@ -4,8 +4,12 @@ var nodemon = require('gulp-nodemon');
 var buildSemantic = require('./semantic/tasks/build');
 var watchSemantic = require('./semantic/tasks/watch');
 var mocha = require('gulp-mocha');
+var istanbul = require('gulp-istanbul');
 
 var markdownFolder = process.env.MARKDOWN_FOLDER || 'markdown/';
+
+var testsPath = 'test/**/*.js';
+var srcPath = './src/**/*.js';
 
 gulp.task('build-ui', buildSemantic);
 gulp.task('watch-ui', watchSemantic);
@@ -39,14 +43,25 @@ gulp.task('build', ['build-ui'], function() {
   ]).pipe(gulp.dest('./public/dist'));
 });
 
-gulp.task('mocha', function() {
-  return gulp.src(['test/*.spec.js'], {})
-    .pipe(mocha());
+gulp.task('cover', function() {
+  return gulp.src([srcPath])
+    // Covering files
+    .pipe(istanbul())
+    // Force `require` to return covered files
+    .pipe(istanbul.hookRequire());
 });
 
-gulp.task('watch-mocha', function() {
-  gulp.run('mocha');
-  return gulp.watch(['./src/**/*.js', 'test/**/*.js'], ['mocha']);
+gulp.task('test', ['cover'], function() {
+  return gulp.src([testsPath], {})
+    .pipe(mocha())
+    .pipe(istanbul.writeReports())
+     // Enforce a coverage of at least 90%
+    .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
+});
+
+gulp.task('test-watch', function() {
+  gulp.run('test');
+  return gulp.watch([srcPath, testsPath], ['test']);
 });
 
 gulp.task('serve-dev', ['browser-sync', 'watch-ui']);
