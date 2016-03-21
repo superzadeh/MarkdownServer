@@ -1,7 +1,6 @@
 var bluebird = require('bluebird');
 var express = require('express');
 var path = require('path');
-var os = require('os');
 var errorHandler = require('errorhandler');
 var fs = bluebird.promisifyAll(require('fs'));
 var httpntlm = bluebird.promisifyAll(require('httpntlm'));
