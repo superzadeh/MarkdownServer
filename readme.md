@@ -65,7 +65,7 @@ Note that the coverage threshold is at 90%, so make sure your stay above it if y
 
 ### TODO
 - [X] Implement NTLM tests
-- [ ] Add bluebird and promisify all the things
+- [X] Add bluebird and promisify all the things
 - [ ] Improve the sidebar: make it collapsible and make the content good looking
 - [ ] Expose the table of content of a file through a JSON API
 - [ ] Add a search feature
