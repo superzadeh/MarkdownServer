@@ -1,7 +1,10 @@
 var setup =  require('./setup.js');
 var request = require('supertest');
 var assert = require('assert');
+var constants = require('../src/constants');
 var app = require('../src/app');
+
+app.set(constants.MARKDOWN_FOLDER, '../test/markdown/');
 
 describe('GET /test', function() {
   it('should return 200', function(done) {
@@ -10,9 +13,6 @@ describe('GET /test', function() {
       .get('/test')
       .expect(200)
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         done();
       });
   });
@@ -40,9 +40,6 @@ describe('GET /notfound', function() {
       .get('/notfound')
       .expect(200)
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         done();
       });
   });
@@ -50,9 +47,6 @@ describe('GET /notfound', function() {
     request(app)
       .get('/notfound')
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         res.text.should.match(/File not found/);
         done();
       });

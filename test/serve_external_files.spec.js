@@ -4,14 +4,16 @@ var request = require('supertest');
 var assert = require('assert');
 var chai = require('chai').should();
 var nock = require('nock');
-var httpntlmStub = {};
+var constants = require('../src/constants');
 
+var httpntlmStub = {};
 var app = proxyquire('../src/app', { 'httpntlm': httpntlmStub });
+app.set(constants.MARKDOWN_EXTERNAL_ROOT, 'http://www.test.com/');
 
 describe('GET /external/test', function() {
 
   beforeEach(function() {
-    var externalSource = nock(process.env.MARKDOWN_EXTERNAL_ROOT)
+    var externalSource = nock(app.get(constants.MARKDOWN_EXTERNAL_ROOT))
       .get('/test.md')
       .reply(200, '# Test Title');
   });
@@ -25,9 +27,6 @@ describe('GET /external/test', function() {
       .get('/external/test')
       .expect(200)
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         done();
       });
   });
@@ -56,7 +55,7 @@ describe('GET /external/test', function() {
 describe('GET /external/notfound', function() {
 
   beforeEach(function() {
-    var externalSource = nock(process.env.MARKDOWN_EXTERNAL_ROOT)
+    var externalSource = nock(app.get(constants.MARKDOWN_EXTERNAL_ROOT))
       .get('/notfound.md')
       .reply(404);
   });
@@ -70,9 +69,6 @@ describe('GET /external/notfound', function() {
       .get('/external/notfound')
       .expect(200)
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         done();
       });
   });
@@ -81,9 +77,6 @@ describe('GET /external/notfound', function() {
     request(app)
       .get('/external/notfound')
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         res.text.should.match(/File not found/);
         done();
       });
@@ -100,14 +93,14 @@ describe('GET /external/notfound', function() {
 });
 
 describe('GET /external/*', function() {
-  var markdownRoot = process.env.MARKDOWN_EXTERNAL_ROOT;
+  var markdownRoot = app.get(constants.MARKDOWN_EXTERNAL_ROOT);
 
   before(function() {
-    process.env.MARKDOWN_EXTERNAL_ROOT = '';
+    app.set(constants.MARKDOWN_EXTERNAL_ROOT, '');
   });
 
   after(function() {
-    process.env.MARKDOWN_EXTERNAL_ROOT = markdownRoot;
+    app.set(constants.MARKDOWN_EXTERNAL_ROOT, markdownRoot);
   })
 
   it('should return an error if the MARKDOWN_EXTERNAL_ROOT env variable is not set', function(done) {
@@ -167,9 +160,6 @@ describe('GET /external/* with NTLM authentication', function() {
       .get('/external/whatever')
       .expect(200)
       .end(function(err, res) {
-        if (err) {
-          throw err;
-        }
         res.text.should.match(/File not found/);
         done();
       });

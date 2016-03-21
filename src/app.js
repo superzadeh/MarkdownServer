@@ -17,6 +17,7 @@ app.set('views', path.resolve(__dirname, '../views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.resolve(__dirname, '../public')));
 app.set(constants.MARKDOWN_FOLDER, process.env.MARKDOWN_FOLDER || '../markdown/');
+app.set(constants.MARKDOWN_EXTERNAL_ROOT, process.env.MARKDOWN_EXTERNAL_ROOT || null);
 
 // development only
 if (process.env.NODE_ENV === 'development') {
@@ -46,7 +47,7 @@ app.get('/:filename', function(req, res) {
 
 // Load from external URLs
 app.get('/external/:filename', function(req, res) {
-  var root = process.env.MARKDOWN_EXTERNAL_ROOT;
+  var root = app.get(constants.MARKDOWN_EXTERNAL_ROOT);
   if (root) {
     var targetUrl = root + req.params.filename + '.md';
 
@@ -58,28 +59,26 @@ app.get('/external/:filename', function(req, res) {
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.get(options, function(error, response) {
-        if (!error && response.statusCode === 200) {
-          markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
-            res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
-          });
-        } else {
-          res.status(200).send('File not found: ' + req.params.filename);
-        }
+        handleExternalResponse(error, response, req, res);
       });
     } else {
       request.get(targetUrl, function(error, response, body) {
-        if (!error && response.statusCode === 200) {
-          markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
-            res.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
-          });
-        } else {
-          res.status(200).send('File not found: ' + req.params.filename);
-        }
+        handleExternalResponse(error, response, req, res);
       });
     }
   } else {
     res.status(200).send('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
   }
 });
+
+function handleExternalResponse(error, response, expressRequest, expressResponse) {
+  if (!error && response.statusCode === 200) {
+    markdownifier.markdownify(response.body).then(function(markdownContent, sideBarContent) {
+      expressResponse.render('markdown', { markdown: markdownContent, sidebar: sideBarContent });
+    });
+  } else {
+    expressResponse.status(200).send('File not found: ' + expressRequest.params.filename);
+  }
+}
 
 module.exports = app;

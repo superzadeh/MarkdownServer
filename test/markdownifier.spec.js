@@ -1,3 +1,4 @@
+var setup = require('./setup.js');
 var assert = require('assert');
 var chai = require('chai').should();
 var markdownifier = require('../src/markdownifier');
