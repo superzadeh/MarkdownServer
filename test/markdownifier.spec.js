@@ -9,4 +9,10 @@ describe('markdownifier.markdownify', function() {
       done();
     });
   });
+
+  it('should throw an error when null content is received', function(done) {
+    markdownifier.markdownify(null).catch(function(err) {
+      done();
+    });
+  });
 });
