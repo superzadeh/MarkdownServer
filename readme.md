@@ -60,7 +60,7 @@ Pull requests are welcome, as long you keep this thing simple. I want it to be a
 simple solution to serve markdown files.
 
 ### TODO
-- [ ] Implement NTLM tests
+- [X] Implement NTLM tests
 - [ ] Add bluebird and promisify all the things
 - [ ] Improve the sidebar: make it collapsible and make the content good looking
 - [ ] Expose the table of content of a file through a JSON API
