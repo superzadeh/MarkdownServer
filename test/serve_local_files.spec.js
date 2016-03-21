@@ -43,11 +43,11 @@ describe('GET /notfound', function() {
         done();
       });
   });
-  it('should return "File not found"', function(done) {
+  it('should return "no such file"', function(done) {
     request(app)
       .get('/notfound')
       .end(function(err, res) {
-        res.text.should.match(/File not found/);
+        res.text.should.match(/no such file/);
         done();
       });
   });

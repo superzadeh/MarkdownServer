@@ -4,9 +4,9 @@ var path = require('path');
 var os = require('os');
 var errorHandler = require('errorhandler');
 var fs = bluebird.promisifyAll(require('fs'));
-var httpntlm = require('httpntlm');
+var httpntlm = bluebird.promisifyAll(require('httpntlm'));
 var logger = require('morgan');
-var request = require('request');
+var request = bluebird.promisifyAll(require('request'));
 var constants = require('./constants');
 var markdownifier = require('./markdownifier');
 var app = express();
@@ -40,8 +40,7 @@ app.get('/:filename', function(req, res) {
       });
     })
     .catch(function(err) {
-      // reply 200 to still render a page, but indicate that the file was not found
-      res.status(200).send('File not found: ' + filename);
+      res.status(200).send(`Error while processing the request, ${err}`);
     });
 });
 
@@ -58,26 +57,32 @@ app.get('/external/:filename', function(req, res) {
         password: process.env.NTLM_PASSWORD,
         domain: process.env.NTLM_DOMAIN
       };
-      httpntlm.get(options, function(error, response) {
-        handleExternalResponse(error, response, req, res);
-      });
+      httpntlm.getAsync(options)
+        .then(function(response) {
+          handleExternalResponse(response, req, res);
+        });
     } else {
-      request.get(targetUrl, function(error, response, body) {
-        handleExternalResponse(error, response, req, res);
-      });
+      request.getAsync(targetUrl)
+        .then(function(response) {
+          handleExternalResponse(response, req, res);
+        });
     }
   } else {
     res.status(200).send('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
   }
 });
 
-function handleExternalResponse(error, response, expressRequest, expressResponse) {
-  if (!error && response.statusCode === 200) {
+function handleExternalResponse(response, expressRequest, expressResponse) {
+  if (response.statusCode === 200) {
     return markdownifier.markdownify(response.body).then(function(data) {
       expressResponse.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
     });
+  } else if (response.statusCode === 404) {
+    expressResponse.status(200).send(`File not found: ${expressRequest.params.filename} (status: ${response.statusCode})`);
+  } else if (response.statusCode === 401) {
+    expressResponse.status(200).send(`Unauthorized to access file ${expressRequest.params.filename} (status: ${response.statusCode})`);
   } else {
-    expressResponse.status(200).send('File not found: ' + expressRequest.params.filename);
+    expressResponse.status(200).send(`Error when processing request for file ${expressRequest.params.filename} (status: ${response.statusCode})`);
   }
 }
 
