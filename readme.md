@@ -11,8 +11,7 @@ git clone https://github.com/superzadeh/MarkdownServer
 cd MarkdownServer
 npm install gulp -g
 npm install
-gulp build
-gulp serve-dev
+gulp serve-build
 ```
 Drop files in the ./markdown folder, and access them by file name without the extension. 
 ```
@@ -58,6 +57,11 @@ the name of the environment variable and the value is its value.
 ## Contributions
 Pull requests are welcome, as long you keep this thing simple. I want it to be and remain a very 
 simple solution to serve markdown files.
+
+### Running tests
+You can run tests using `gulp test`. This will run the tests as well as a coverage analysis. There is also a watchable gulp task `gulp test-watch`. If you do not want the test coverage report, simply run `mocha` or `mocha watch`. To debug tests, `mocha --debug-brk` is available (you can then use VS Code or Node Inspector to attach to the process).
+
+Note that the coverage threshold is at 90%, so make sure your stay above it if you make changes.
 
 ### TODO
 - [X] Implement NTLM tests
