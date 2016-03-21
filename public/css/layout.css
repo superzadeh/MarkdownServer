@@ -1,0 +1,32 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  min-width: 320px;
+}
+
+#content {
+    padding-top: 20px;
+}
+
+.hljs {
+    background: transparent;
+}
+
+.toc ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.toc li { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+.toc li:before {
+    content: "• ";
+    color: white; /* or whatever color you prefer */
+}
+.toc li a {
+    color: white;
+}

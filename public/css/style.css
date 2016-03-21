@@ -1,14 +1,7 @@
-#content {
-  margin-left:15rem !important;
-  width: auto !important;
-}
-
 body {
     background: #fff;
     color: #333;
     font: 15px/1.7 Helvetica,arial,freesans,clean,sans-serif;
-    margin: 20px;
-    padding: 0 50px 50px 50px;
 }
 
 #frame {
@@ -252,16 +245,4 @@ h6 tt {
     text-align: right;
     white-space: nowrap;
     width: 914px;
-}
-
-.hljs {
-    background: transparent;
-}
-
-.toc a {
-    color: #FFF;
-}
-
-.toc ul {
-    list-style: none;
 }
