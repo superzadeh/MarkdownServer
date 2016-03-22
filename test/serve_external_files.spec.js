@@ -28,69 +28,50 @@ describe('GET /external/*', function () {
     nock.cleanAll();
   })
 
-  it('should return 200 as status code for a file that exists', function (done) {
-    request(app)
-      .get('/external/test')
-      .expect(200)
-      .end(function (err, res) {
-        done();
-      });
-  });
-
   it('should return HTML content for a file that exists', function (done) {
     request(app)
       .get('/external/test')
       .expect('Content-Type', /text\/html/)
-      .end(function (err, res) {
-        done();
-      });
+      .expect(200, done);
   });
 
   it('should transform the markdown file\'s content to HTML', function (done) {
     request(app)
       .get('/external/test')
-      .end(function (err, res) {
+      .expect(function (res) {
         res.text.should.match(/<h1 id="test-title">Test Title<\/h1>/);
-        done();
-      });
+      })
+      .expect(200, done);
   });
 
   it('should return 200 as status code for an URL that does not exist', function (done) {
     request(app)
       .get('/external/notfound')
-      .expect(200)
-      .end(function (err, res) {
-        done();
-      });
+      .expect(200, done);
   });
 
   it('should return "File not found" for an URL that does not exist', function (done) {
     request(app)
       .get('/external/notfound')
-      .end(function (err, res) {
+      .expect(function (res) {
         res.text.should.match(/File not found/);
-        done();
-      });
+      })
+      .expect(200, done);
   });
 
   it('should return HTML content an URL that does not exist', function (done) {
     request(app)
       .get('/external/notfound')
-      .expect('Content-Type', /text\/html/)
-      .end(function (err, res) {
-        done();
-      });
+      .expect('Content-Type', /text\/html/, done)
+      .expect(200, done);
   });
 
   it('should indicate that there was a server error if the URL returns a 500 response', function (done) {
     request(app)
       .get('/external/500file')
-      .expect(200)
-      .end(function (err, res) {
-        res.text.should.equal('Error when processing request for file 500file (status: 500)');
-        done();
-      });
+      .expect(200, done);
   });
+
 });
 
 describe('GET /external/*', function () {
@@ -107,14 +88,16 @@ describe('GET /external/*', function () {
   it('should return an error if the MARKDOWN_EXTERNAL_ROOT env variable is not set', function (done) {
     request(app)
       .get('/external/whatever')
-      .end(function (err, res) {
+      .expect(function (res) {
         res.text.should.equal('The MARKDOWN_EXTERNAL_ROOT environment variable is not set. Could not load file from external source.');
-        done();
-      });
+      })
+      .expect(200, done);
   });
+
 });
 
 describe('GET /external/* with NTLM authentication', function () {
+
   before(function () {
     httpntlmStub.get = function (opts, callback) {
       // stub successful and failed authentication
@@ -145,11 +128,10 @@ describe('GET /external/* with NTLM authentication', function () {
 
     request(app)
       .get('/external/whatever')
-      .expect(200)
-      .end(function (err, res) {
+      .expect(function (res) {
         res.text.should.match(/<h1 id="test-title">Test Title<\/h1>/);
-        done();
-      });
+      })
+      .expect(200, done);
   });
 
   it('should return an error if the authentication fails (401 response)', function (done) {
@@ -159,10 +141,10 @@ describe('GET /external/* with NTLM authentication', function () {
 
     request(app)
       .get('/external/whatever')
-      .expect(200)
-      .end(function (err, res) {
+      .expect(function (res) {
         res.text.should.match(/Unauthorized to access file/);
-        done();
-      });
+      })
+      .expect(200, done);
   });
+
 });
