@@ -5,34 +5,36 @@ body {
 }
 
 #content {
-    padding-top: 40px;
+  padding-top: 40px;
 }
 
 .hljs {
-    background: transparent;
+  background: transparent;
 }
 
 .toc {
-    padding: 20px;
+  padding: 20px;
 }
 
 .toc ul {
-    list-style: none;
-    padding:0;
-    margin:0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.toc li { 
-    padding-left: 1em; 
-    text-indent: -.7em;
+.toc li {
+  padding-left: 1em;
+  text-indent: -.7em;
 }
 
 .toc li:before {
-    content: "• ";
-    color: white; /* or whatever color you prefer */
+  content: "• ";
+  color: white;
+  /* or whatever color you prefer */
 }
+
 .toc li a {
-    color: white;
+  color: white;
 }
 
 h1,

@@ -84,3 +84,5 @@ npm install tsd -g
 tsd install
 ```
 
+I also recommend to use the [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify) 
+extension that will help ensure the same coding style automatically (beautify on save is enabled). 

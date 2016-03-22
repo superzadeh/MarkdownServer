@@ -26,25 +26,25 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Load from local files
-app.get('/:filename', function(req, res) {
+app.get('/:filename', function (req, res) {
   var filename = req.params.filename;
   var serverFilepath = path.resolve(__dirname, app.get(constants.MARKDOWN_FOLDER) + filename + '.md');
   fs.accessAsync(serverFilepath, fs.F_OK)
-    .then(function() {
+    .then(function () {
       return fs.readFileAsync(serverFilepath, "utf8");
     })
-    .then(function(content) {
-      return markdownifier.markdownify(content).then(function(data) {
+    .then(function (content) {
+      return markdownifier.markdownify(content).then(function (data) {
         res.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
       });
     })
-    .catch(function(err) {
+    .catch(function (err) {
       res.status(200).send(`Error while processing the request, ${err}`);
     });
 });
 
 // Load from external URLs
-app.get('/external/:filename', function(req, res) {
+app.get('/external/:filename', function (req, res) {
   var root = app.get(constants.MARKDOWN_EXTERNAL_ROOT);
   if (root) {
     var targetUrl = root + req.params.filename + '.md';
@@ -57,12 +57,12 @@ app.get('/external/:filename', function(req, res) {
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.getAsync(options)
-        .then(function(response) {
+        .then(function (response) {
           handleExternalResponse(response, req, res);
         });
     } else {
       request.getAsync(targetUrl)
-        .then(function(response) {
+        .then(function (response) {
           handleExternalResponse(response, req, res);
         });
     }
@@ -73,7 +73,7 @@ app.get('/external/:filename', function(req, res) {
 
 function handleExternalResponse(response, expressRequest, expressResponse) {
   if (response.statusCode === 200) {
-    return markdownifier.markdownify(response.body).then(function(data) {
+    return markdownifier.markdownify(response.body).then(function (data) {
       expressResponse.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
     });
   } else if (response.statusCode === 404) {
