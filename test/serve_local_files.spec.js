@@ -1,10 +1,11 @@
 var setup = require('./setup.js');
+var proxyquire = require('proxyquire');
 var request = require('supertest');
 var assert = require('assert');
 var constants = require('../src/constants');
 var app = require('../src/app');
 
-app.set(constants.MARKDOWN_FOLDER, '../test/markdown/');
+process.env.MARKDOWN_FOLDER = 'test/markdown/';
 
 describe('GET /test', function () {
 

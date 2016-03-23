@@ -7,15 +7,19 @@ var nock = require('nock');
 var constants = require('../src/constants');
 
 var httpntlmStub = {};
-var app = proxyquire('../src/app', {
+var external = proxyquire('../src/routes/external', {
   'httpntlm': httpntlmStub
 });
-app.set(constants.MARKDOWN_EXTERNAL_ROOT, 'http://www.test.com/');
+var app = proxyquire('../src/app', {
+  'external': external
+});
+
+process.env.MARKDOWN_EXTERNAL_ROOT = 'http://www.test.com/';
 
 describe('GET /external/*', function () {
 
   beforeEach(function () {
-    var externalSource = nock(app.get(constants.MARKDOWN_EXTERNAL_ROOT))
+    var externalSource = nock(process.env.MARKDOWN_EXTERNAL_ROOT)
       .get('/test.md')
       .reply(200, '# Test Title')
       .get('/500file.md')
@@ -62,7 +66,7 @@ describe('GET /external/*', function () {
   it('should return HTML content an URL that does not exist', function (done) {
     request(app)
       .get('/external/notfound')
-      .expect('Content-Type', /text\/html/, done)
+      .expect('Content-Type', /text\/html/)
       .expect(200, done);
   });
 
@@ -75,14 +79,15 @@ describe('GET /external/*', function () {
 });
 
 describe('GET /external/*', function () {
-  var markdownRoot = app.get(constants.MARKDOWN_EXTERNAL_ROOT);
+  var markdownRoot;
 
   before(function () {
-    app.set(constants.MARKDOWN_EXTERNAL_ROOT, '');
+    markdownRoot = process.env.MARKDOWN_EXTERNAL_ROOT;
+    process.env.MARKDOWN_EXTERNAL_ROOT = '';
   });
 
   after(function () {
-    app.set(constants.MARKDOWN_EXTERNAL_ROOT, markdownRoot);
+    process.env.MARKDOWN_EXTERNAL_ROOT = markdownRoot;
   })
 
   it('should return an error if the MARKDOWN_EXTERNAL_ROOT env variable is not set', function (done) {
