@@ -66,13 +66,14 @@ Note that the coverage threshold is at 90%, so make sure your stay above it if y
 ### TODO
 - [X] Implement NTLM tests
 - [X] Add bluebird and promisify all the things
-- [ ] Improve the sidebar: make it collapsible and make the content good looking
+- [X] Improve the sidebar: make it collapsible and make the content good looking
 - [ ] Expose the table of content of a file through a JSON API
 - [ ] Add a search feature
 - [ ] Add FTP support
 - [ ] Add an administration UI to setup NTLM & FTP parameters
 - [ ] Provide a more secure way to store credentials
 - [ ] Allow users to upload files to be served
+- [ ] Tune performances
 
 ### Visual Studio Code
 This project is optimized for edition within [Visual Studio Code](https://code.visualstudio.com/).
