@@ -30,19 +30,60 @@ body {
 .toc li:before {
   content: "• ";
   color: white;
-  /* or whatever color you prefer */
 }
 
 .toc li a {
   color: white;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  padding-top: 50px;
-  margin-top: -50px;
+.pusher > .full.height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.full.height > .toc {
+  position: relative;
+  z-index: 1;
+  background-color: #1b1c1d;
+  width: 250px;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.full.height > .article {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0px;
+  margin-left: 15px;
+}
+
+#menu {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #menu {
+    display: block;
+  }
+  .toc {
+    display: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-top: 50px;
+    margin-top: -50px;
+  }
 }

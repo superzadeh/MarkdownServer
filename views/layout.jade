@@ -18,7 +18,7 @@ html(lang="en-US")
               // create sidebar and attach to menu open
               $('.ui.sidebar')
                 .sidebar('attach events', '.toc.item')
-                .sidebar('attach events', '.toc ul li a')
+                .sidebar('attach events', '#sidebar ul li a')
               ;
             })
           ;
@@ -26,9 +26,11 @@ html(lang="en-US")
       include sidebar
       div(class="pusher")    
         include menu  
-        div(class="ui vertical stripe segment")
-            div(class="ui middle aligned stackable grid container")
-                div(class"row")
-                    div(class="sixteen wide column")
-                        block content
+        div.full.height
+          include toc
+          div.article
+              div(class="ui middle aligned stackable grid container")
+                  div(class"row")
+                      div(class="sixteen wide column")
+                          block content
         
