@@ -1,23 +1,19 @@
 var setup = require('./setup.js');
-var proxyquire = require('proxyquire');
+var mockery = require('mockery');
 var request = require('supertest');
 var assert = require('assert');
 var chai = require('chai').should();
 var nock = require('nock');
 var constants = require('../src/constants');
 
-var httpntlmStub = {};
-var external = proxyquire('../src/routes/external', {
-  'httpntlm': httpntlmStub
-});
-var app = proxyquire('../src/app', {
-  'external': external
-});
-
 process.env.MARKDOWN_EXTERNAL_ROOT = 'http://www.test.com/';
 
 describe('GET /external/*', function () {
+  var app;
+  before(function () {
+    app = require('../src/app');
 
+  });
   beforeEach(function () {
     var externalSource = nock(process.env.MARKDOWN_EXTERNAL_ROOT)
       .get('/test.md')
@@ -80,10 +76,11 @@ describe('GET /external/*', function () {
 
 describe('GET /external/*', function () {
   var markdownRoot;
-
+  var app;
   before(function () {
     markdownRoot = process.env.MARKDOWN_EXTERNAL_ROOT;
     process.env.MARKDOWN_EXTERNAL_ROOT = '';
+    app = require('../src/app');
   });
 
   after(function () {
@@ -102,22 +99,37 @@ describe('GET /external/*', function () {
 });
 
 describe('GET /external/* with NTLM authentication', function () {
+  var app;
 
   before(function () {
-    httpntlmStub.get = function (opts, callback) {
-      // stub successful and failed authentication
-      if (opts.username === 'login' && opts.password === 'password' && opts.domain === 'domain') {
-        return callback(null, {
-          statusCode: 200,
-          body: '# Test Title'
-        });
-      } else {
-        return callback(null, {
-          statusCode: 401,
-          body: 'Unauthorized'
-        });
+    mockery.enable({
+      warnOnReplace: true,
+      warnOnUnregistered: false,
+      useCleanCache: true
+    });
+
+    mockery.registerMock('httpntlm', {
+      get: function get(opts, callback) {
+        // stub successful and failed authentication
+        if (opts.username === 'login' && opts.password === 'password' && opts.domain === 'domain') {
+          return callback(null, {
+            statusCode: 200,
+            body: '# Test Title'
+          });
+        } else {
+          return callback(null, {
+            statusCode: 401,
+            body: 'Unauthorized'
+          });
+        }
       }
-    };
+    });
+    app = require('../src/app');
+  });
+
+  after(function () {
+    mockery.deregisterMock('httpntlm');
+    mockery.disable();
   });
 
   afterEach(function () {

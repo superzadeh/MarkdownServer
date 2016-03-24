@@ -5,10 +5,10 @@ var errorHandler = require('errorhandler');
 var logger = require('morgan');
 // modules
 var bluebird = require('bluebird');
-var fs = bluebird.promisifyAll(require('fs'));
 var markdownifier = require('./markdownifier');
 var constants = require('./constants');
 // routes
+var local = require('./routes/local');
 var external = require('./routes/external');
 var toc = require('./routes/toc');
 
@@ -32,25 +32,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(logger('dev'));
 }
 
-// Load from local files
-app.get('/:filename', function (req, res) {
-  var filename = req.params.filename;
-  var serverFilepath = path.resolve(__dirname, app.get(constants.MARKDOWN_FOLDER) + filename + '.md');
-  fs.accessAsync(serverFilepath, fs.F_OK)
-    .then(function () {
-      return fs.readFileAsync(serverFilepath, "utf8");
-    })
-    .then(function (content) {
-      return markdownifier.markdownify(content).then(function (data) {
-        res.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
-      });
-    })
-    .catch(function (err) {
-      res.status(200).send(`Error while processing the request, ${err}`);
-    });
-});
-
-app.use("/external", external);
-app.use("/toc", toc);
+app.use('/', local);
+app.use('/external', external);
+app.use('/toc', toc);
 
 module.exports = app;

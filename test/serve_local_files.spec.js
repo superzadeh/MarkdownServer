@@ -1,5 +1,4 @@
 var setup = require('./setup.js');
-var proxyquire = require('proxyquire');
 var request = require('supertest');
 var assert = require('assert');
 var constants = require('../src/constants');

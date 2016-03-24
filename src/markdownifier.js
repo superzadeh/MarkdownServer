@@ -2,7 +2,9 @@ var bluebird = require('bluebird');
 var marked = bluebird.promisifyAll(require('marked'));
 var toc = require('markdown-toc');
 
-module.exports.markdownify = function markdownify(content) {
+function Markdownifier() {}
+
+Markdownifier.prototype.markdownify = function markdownify(content) {
   return new Promise(function (resolve, reject) {
     marked.parseAsync(content)
       .then(function (contentMarked) {
@@ -14,3 +16,15 @@ module.exports.markdownify = function markdownify(content) {
       });
   });
 };
+
+Markdownifier.prototype.getToc = function getToc(content) {
+  return new Promise(function (resolve, reject) {
+    try {
+      resolve(toc(content));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+module.exports = new Markdownifier();
