@@ -4,21 +4,21 @@ var toc = require('markdown-toc');
 
 function Markdownifier() {}
 
-Markdownifier.prototype.markdownify = function markdownify(content) {
-  return new Promise(function (resolve, reject) {
+Markdownifier.prototype.markdownify = (content) => {
+  return new Promise((resolve, reject) => {
     marked.parseAsync(content)
-      .then(function (contentMarked) {
+      .then((contentMarked) => {
         var markdown = marked(contentMarked);
         var sidebar = marked(toc(content).content);
         resolve({ markdown, sidebar });
-      }).catch(function (err) {
+      }).catch((err) => {
         reject(err);
       });
   });
 };
 
-Markdownifier.prototype.getToc = function getToc(content) {
-  return new Promise(function (resolve, reject) {
+Markdownifier.prototype.getToc = (content) => {
+  return new Promise((resolve, reject) => {
     try {
       resolve(toc(content));
     } catch (error) {

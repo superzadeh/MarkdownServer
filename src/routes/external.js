@@ -6,7 +6,7 @@ var request = bluebird.promisifyAll(require('request'));
 var router = express.Router();
 
 // Load from external URLs
-router.get('/:filename', function (req, res) {
+router.get('/:filename', (req, res) => {
   var root = process.env.MARKDOWN_EXTERNAL_ROOT;
   if (root) {
     var targetUrl = root + req.params.filename + '.md';
@@ -19,12 +19,12 @@ router.get('/:filename', function (req, res) {
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.getAsync(options)
-        .then(function (response) {
+        .then((response) => {
           handleExternalResponse(response, req, res);
         });
     } else {
       request.getAsync(targetUrl)
-        .then(function (response) {
+        .then((response) => {
           handleExternalResponse(response, req, res);
         });
     }

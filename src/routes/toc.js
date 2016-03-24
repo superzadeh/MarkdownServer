@@ -5,22 +5,19 @@ var path = require('path');
 var fs = bluebird.promisifyAll(require('fs'));
 var router = express.Router();
 
-router.get('/:filename', function (req, res) {
-
+router.get('/:filename', (req, res) => {
   var filename = req.params.filename;
   var serverFilepath = path.resolve(__dirname, path.join('../../', process.env.MARKDOWN_FOLDER, filename + '.md'));
 
   fs.accessAsync(serverFilepath, fs.F_OK)
-    .then(function () {
+    .then(() => {
       return fs.readFileAsync(serverFilepath, "utf8");
     })
-    .then(function (content) {
+    .then((content) => {
       markdownify.getToc(content)
-        .then(function (toc) {
-          res.json(toc.json);
-        });
+        .then((toc) => { res.json(toc.json); });
     })
-    .catch(function (err) {
+    .catch((err) => {
       if (/ENOENT/.test(err)) {
         res.status(404).json('File not found');
       } else {

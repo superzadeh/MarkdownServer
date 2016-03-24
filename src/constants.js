@@ -1,4 +1,4 @@
-var constants = {
+const constants = {
   MARKDOWN_FOLDER: 'MARKDOWN_FOLDER',
   PORT: 'PORT',
   HOST: 'HOST'
