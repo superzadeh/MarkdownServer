@@ -4,10 +4,6 @@ body {
   min-width: 320px;
 }
 
-#content {
-  padding-top: 40px;
-}
-
 .hljs {
   background: transparent;
 }
@@ -85,5 +81,8 @@ body {
   h6 {
     padding-top: 50px;
     margin-top: -50px;
+  }
+  #content {
+    padding-top: 40px;
   }
 }
