@@ -67,7 +67,9 @@ Note that the coverage threshold is at 90%, so make sure your stay above it if y
 - [X] Implement NTLM tests
 - [X] Add bluebird and promisify all the things
 - [X] Improve the sidebar: make it collapsible and make the content good looking
-- [ ] Expose the table of content of a file through a JSON API
+- [X] Expose the table of content of a local file through a JSON API
+- [X] Expose the table of content of an external file through a JSON API
+- [ ] Rewrite the code to es2015 (let, classes, arrow functions, template strings and classes)
 - [ ] Add a search feature
 - [ ] Add FTP support
 - [ ] Add an administration UI to setup NTLM & FTP parameters
