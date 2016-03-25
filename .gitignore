@@ -4,6 +4,7 @@ typings
 markdown
 src/iisnode
 coverage
+npm-debug.log
 
 # Windows image file caches
 Thumbs.db
