@@ -43,10 +43,11 @@ body {
 }
 
 .full.height > .toc {
-  position: relative;
+  position: fixed;
+  height: 100%;
   z-index: 1;
   background-color: #1b1c1d;
-  width: 250px;
+  width: 300px;
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
@@ -59,14 +60,14 @@ body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   min-width: 0px;
-  margin-left: 15px;
+  margin-left: 315px;
 }
 
 #menu {
   display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   #menu {
     display: block;
   }
@@ -85,4 +86,7 @@ body {
   #content {
     padding-top: 40px;
   }
+  .full.height > .article {
+  margin-left: 15px;
+}
 }
