@@ -16,16 +16,13 @@ html(lang="en-US")
           $(document)
             .ready(function() {
               // create sidebar and attach to menu open
-              $('.ui.sidebar')
-                .sidebar('attach events', '#sidebarMenu')
-                .sidebar('attach events', '#sidebar ul li a')
-              ;
+              $('.ui.sidebar').sidebar('attach events', '#sidebarMenu, #close-sidebar, #sidebar ul li a');
             })
           ;
     body
       include sidebar
+      include menu  
       div.ui.pusher  
-        include menu  
         div.full.height
           include toc
           div.article.ui
