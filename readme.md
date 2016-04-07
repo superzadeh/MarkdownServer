@@ -70,6 +70,7 @@ Note that the coverage threshold is at 90%, so make sure your stay above it if y
 - [X] Expose the table of content of a local file through a JSON API
 - [X] Expose the table of content of an external file through a JSON API
 - [ ] Add a search feature
+- [ ] Create a review workflow with ability to add comments
 - [ ] Add FTP support
 - [ ] Add an administration UI to setup NTLM & FTP parameters, as well as select the default theme
 - [ ] Provide a more secure way to store credentials
