@@ -10,7 +10,7 @@ var credentials = {
 };
 
 program
-  .version('0.1.0')
+  .version('0.1.1')
   .option('-u, --username <username>', "The account's username")
   .option('-p, --password <password>', "The account's password")
   .parse(process.argv);

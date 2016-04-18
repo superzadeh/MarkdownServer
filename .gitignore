@@ -1,7 +1,10 @@
+# Application specific
+credentials.json
+markdown
+
 # NodeJS
 node_modules
 typings
-markdown
 src/iisnode
 coverage
 npm-debug.log
