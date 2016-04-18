@@ -5,7 +5,7 @@ var markdownifier = require('../markdownifier');
 var httpntlm = bluebird.promisifyAll(require('httpntlm'));
 var request = bluebird.promisifyAll(require('request'));
 var router = express.Router();
-var crypto = require('../crypto');
+var cryptography = require('../cryptography');
 var credentials = require('../credentials');
 
 // Load from external URLs
@@ -13,12 +13,12 @@ router.get('/:filename', (req, res) => {
   var root = process.env.MARKDOWN_EXTERNAL_ROOT;
   if (root) {
     var targetUrl = root + req.params.filename + '.md';
-
-    if (credentials && process.env.NTLM_DOMAIN) {
+    var user = credentials.load();
+    if (credentials.load() && process.env.NTLM_DOMAIN) {
       var options = {
         url: targetUrl,
-        username: crypto.decrypt(credentials.username),
-        password: crypto.decrypt(credentials.password),
+        username: cryptography.decrypt(user.username),
+        password: cryptography.decrypt(user.password),
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.getAsync(options)

@@ -124,7 +124,7 @@ describe('GET /external/* with NTLM authentication', function () {
         }
       }
     });
-    mockery.registerMock('../crypto', {
+    mockery.registerMock('../cryptography', {
       decrypt: function (input) {
         return input;
       }
@@ -134,7 +134,7 @@ describe('GET /external/* with NTLM authentication', function () {
 
   after(function () {
     mockery.deregisterMock('httpntlm');
-    mockery.deregisterMock('../crypto');
+    mockery.deregisterMock('../cryptography');
     mockery.disable();
   });
 
@@ -146,8 +146,12 @@ describe('GET /external/* with NTLM authentication', function () {
   it('should return HTML content if the authentication succeeds', function (done) {
     process.env.NTLM_DOMAIN = 'domain';
     mockery.registerMock('../credentials', {
-      username: 'login',
-      password: 'password'
+      load: function () {
+        return {
+          username: 'login',
+          password: 'password'
+        }
+      }
     });
     app = require('../../src/app');
 
@@ -162,8 +166,12 @@ describe('GET /external/* with NTLM authentication', function () {
   it('should return an error if the authentication fails (401 response)', function (done) {
     process.env.NTLM_DOMAIN = 'baddomain';
     mockery.registerMock('../credentials', {
-      username: 'badlogin',
-      password: 'badpassword'
+      load: function () {
+        return {
+          username: 'badlogin',
+          password: 'badpassword'
+        }
+      }
     });
     app = require('../../src/app');
 
