@@ -1,8 +1,8 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node
 
 var program = require('commander');
 var fs = require('fs');
-var crypto = require('./crypto.js');
+var crypto = require('./cryptography');
 
 var credentials = {
   username: '',
