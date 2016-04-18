@@ -1,6 +1,6 @@
 var crypto = require('crypto'),
   algorithm = 'aes-256-ctr',
-  password = 'WaMfFL7Zg9bSNs7YQ4k9CPWcFe';
+  password = 'a5R2Hvdz';
 
 module.exports = {
   encrypt: function encrypt(text) {

@@ -16,7 +16,7 @@ var cipherStub = function () {
 
 describe('crypto module', function () {
 
-  before(function () {
+  beforeEach(function () {
     mockery.enable({
       warnOnReplace: false,
       warnOnUnregistered: false,
@@ -28,24 +28,29 @@ describe('crypto module', function () {
     });
   });
 
-  after(function () {
+  afterEach(function () {
     mockery.deregisterMock('crypto');
     mockery.disable();
   });
 
-  it('should encrypt content', function (done) {
+  it('should encrypt content', function () {
     var crypto = require('../src/cryptography');
     var result = crypto.encrypt('some text');
     result.should.equals('some text final');
-    done();
   });
 
-  it('should decrypt content', function (done) {
+  it('should decrypt content', function () {
     var crypto = require('../src/cryptography');
     var result = crypto.decrypt('some text');
     result.should.equals('some text final');
-    done();
+  });
 
+  it('should produce the original output when encrypting and decrypting', function () {
+    mockery.deregisterMock('crypto');
+    mockery.disable();
+    var input = 'some long text that will be processed';
+    var crypto = require('../src/cryptography');
+    crypto.decrypt(crypto.encrypt(input)).should.equals(input);
   });
 
 });

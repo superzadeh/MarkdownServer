@@ -70,7 +70,7 @@ simple solution to serve markdown files.
 
 ### Running tests
 
-You can run tests using `gulp test`. This will run the tests as well as a coverage analysis. There is also a watchable gulp task `gulp test-watch`. If you do not want the test coverage report, simply run `mocha` or `mocha watch`. To debug tests, `mocha --debug-brk` is available (you can then use VS Code or Node Inspector to attach to the process).
+You can run tests using `gulp test`. This will run the tests as well as a coverage analysis. There is also a watchable gulp task `gulp test-watch`. If you do not want the test coverage report, simply run `mocha` or `mocha watch`. To debug tests, `mocha --debug-brk` is available (you can then use VS Code or Node Inspector to attach to the process). You can also use `npm test` or `npm run test-watch` to simply run the mocha tasks.
 
 Note that the coverage threshold is at 90%, so make sure your stay above it if you make changes.
 

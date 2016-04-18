@@ -103,7 +103,7 @@ describe('GET /external/* with NTLM authentication', function () {
 
   before(function () {
     mockery.enable({
-      warnOnReplace: true,
+      warnOnReplace: false,
       warnOnUnregistered: false,
       useCleanCache: true
     });
