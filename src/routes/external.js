@@ -1,14 +1,17 @@
 var express = require('express');
 var bluebird = require('bluebird');
+var fs = bluebird.promisifyAll(require('fs'));
 var markdownifier = require('../markdownifier');
 var httpntlm = bluebird.promisifyAll(require('httpntlm'));
 var request = bluebird.promisifyAll(require('request'));
 var router = express.Router();
 var wincredmgr = require('wincredmgr');
+var crypto = require('../crypto.js');
 
-var credentials = wincredmgr.ReadCredentials('MARKDOWNSERVER_ACCOUNT');
-console.log(credentials.username);
-console.log(credentials.password);
+var credentials = fs.accessAsync(serverFilepath, fs.F_OK)
+  .then(() => {
+    return credentials = JSON.parse(fs.readFileSync('file', 'utf8'));
+  })
 
 // Load from external URLs
 router.get('/:filename', (req, res) => {
@@ -16,11 +19,11 @@ router.get('/:filename', (req, res) => {
   if (root) {
     var targetUrl = root + req.params.filename + '.md';
 
-    if (process.env.NTLM_USERNAME && process.env.NTLM_PASSWORD && process.env.NTLM_DOMAIN) {
+    if (credentials && process.env.NTLM_DOMAIN) {
       var options = {
         url: targetUrl,
-        username: credentials.username,
-        password: credentials.password,
+        username: crypto.decrypt(credentials.username),
+        password: crypto.decrypt(credentials.password),
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.getAsync(options)
