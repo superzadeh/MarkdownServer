@@ -6,6 +6,9 @@ src/iisnode
 coverage
 npm-debug.log
 
+# VSCode
+.browse.VC.db
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

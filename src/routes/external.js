@@ -4,6 +4,11 @@ var markdownifier = require('../markdownifier');
 var httpntlm = bluebird.promisifyAll(require('httpntlm'));
 var request = bluebird.promisifyAll(require('request'));
 var router = express.Router();
+var wincredmgr = require('wincredmgr');
+
+var credentials = wincredmgr.ReadCredentials('MARKDOWNSERVER_ACCOUNT');
+console.log(credentials.username);
+console.log(credentials.password);
 
 // Load from external URLs
 router.get('/:filename', (req, res) => {
@@ -14,8 +19,8 @@ router.get('/:filename', (req, res) => {
     if (process.env.NTLM_USERNAME && process.env.NTLM_PASSWORD && process.env.NTLM_DOMAIN) {
       var options = {
         url: targetUrl,
-        username: process.env.NTLM_USERNAME,
-        password: process.env.NTLM_PASSWORD,
+        username: credentials.username,
+        password: credentials.password,
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.getAsync(options)
