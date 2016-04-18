@@ -9,7 +9,7 @@
     "test-cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/**/*.spec.js"
   },
   "bin": {
-    "markdownserver": "./src/credential.js"
+    "markdownserver": "./src/credential-tool.js"
   },
   "repository": {
     "type": "git",

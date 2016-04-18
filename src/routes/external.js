@@ -5,13 +5,12 @@ var markdownifier = require('../markdownifier');
 var httpntlm = bluebird.promisifyAll(require('httpntlm'));
 var request = bluebird.promisifyAll(require('request'));
 var router = express.Router();
-var wincredmgr = require('wincredmgr');
 var crypto = require('../crypto.js');
 
-var credentials = fs.accessAsync(serverFilepath, fs.F_OK)
+var credentials = fs.accessAsync('./credentials.json', fs.F_OK)
   .then(() => {
-    return credentials = JSON.parse(fs.readFileSync('file', 'utf8'));
-  })
+    return credentials = JSON.parse(fs.readFileSync('./credentials.json', 'utf8'));
+  });
 
 // Load from external URLs
 router.get('/:filename', (req, res) => {
