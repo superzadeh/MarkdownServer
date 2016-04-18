@@ -4,7 +4,8 @@
   "files.exclude": {
     "**/.git": true,
     "**/node_modules": true,
-    "**/src/iisnode": true
+    "**/src/iisnode": true,
+    "credentials.json": true
   },
   "beautify.onSave": true
 }

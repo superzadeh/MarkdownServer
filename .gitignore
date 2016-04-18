@@ -1,10 +1,16 @@
+# Application specific
+credentials.json
+markdown
+
 # NodeJS
 node_modules
 typings
-markdown
 src/iisnode
 coverage
 npm-debug.log
+
+# VSCode
+.browse.VC.db
 
 # Windows image file caches
 Thumbs.db

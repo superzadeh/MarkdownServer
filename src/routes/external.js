@@ -1,21 +1,24 @@
 var express = require('express');
 var bluebird = require('bluebird');
+var fs = bluebird.promisifyAll(require('fs'));
 var markdownifier = require('../markdownifier');
 var httpntlm = bluebird.promisifyAll(require('httpntlm'));
 var request = bluebird.promisifyAll(require('request'));
 var router = express.Router();
+var cryptography = require('../cryptography');
+var credentials = require('../credentials');
 
 // Load from external URLs
 router.get('/:filename', (req, res) => {
   var root = process.env.MARKDOWN_EXTERNAL_ROOT;
   if (root) {
     var targetUrl = root + req.params.filename + '.md';
-
-    if (process.env.NTLM_USERNAME && process.env.NTLM_PASSWORD && process.env.NTLM_DOMAIN) {
+    var user = credentials.load();
+    if (credentials.load() && process.env.NTLM_DOMAIN) {
       var options = {
         url: targetUrl,
-        username: process.env.NTLM_USERNAME,
-        password: process.env.NTLM_PASSWORD,
+        username: cryptography.decrypt(user.username),
+        password: cryptography.decrypt(user.password),
         domain: process.env.NTLM_DOMAIN
       };
       httpntlm.getAsync(options)
