@@ -1,4 +1,4 @@
-var setup = require('./setup.js');
+var setup = require('../setup.js');
 var mockery = require('mockery');
 var request = require('supertest');
 var assert = require('assert');
@@ -6,7 +6,7 @@ var sinon = require('sinon');
 var bluebird = require('bluebird');
 require('sinon-as-promised')(bluebird);
 var fs = require('fs');
-var constants = require('../src/constants');
+var constants = require('../../src/constants');
 
 describe('GET /toc with a valid table of content', function () {
   var app;
@@ -16,11 +16,16 @@ describe('GET /toc with a valid table of content', function () {
       warnOnUnregistered: false,
       useCleanCache: true
     });
+    mockery.registerMock('../credentials', {
+      username: 'test',
+      password: 'test'
+    });
   });
 
   afterEach(function () {
     app = null;
     mockery.deregisterMock('fs');
+    mockery.deregisterMock('credentials');
     mockery.disable();
   });
 
@@ -29,9 +34,11 @@ describe('GET /toc with a valid table of content', function () {
     mockery.registerMock('fs', {
       accessAsync: sinon.stub().resolves(null),
       readFileAsync: sinon.stub().resolves('# Title 1 ## Title 2'),
-      stat: fs.stat
+      stat: fs.stat,
+      readFileSync: sinon.stub()
     });
-    app = require('../src/app');
+
+    app = require('../../src/app');
 
     request(app)
       .get('/toc/example')
@@ -53,9 +60,10 @@ describe('GET /toc with a valid table of content', function () {
     mockery.registerMock('fs', {
       accessAsync: sinon.stub().rejects('ENOENT'),
       readFileAsync: sinon.stub(),
-      stat: fs.stat
+      stat: fs.stat,
+      readFileSync: sinon.stub()
     });
-    app = require('../src/app');
+    app = require('../../src/app');
 
     request(app)
       .get('/toc/notfound')
@@ -69,9 +77,10 @@ describe('GET /toc with a valid table of content', function () {
     mockery.registerMock('fs', {
       accessAsync: sinon.stub().rejects('unknown error'),
       readFileAsync: sinon.stub(),
-      stat: fs.stat
+      stat: fs.stat,
+      readFileSync: sinon.stub()
     });
-    app = require('../src/app');
+    app = require('../../src/app');
 
     request(app)
       .get('/toc/notfound')
@@ -80,5 +89,4 @@ describe('GET /toc with a valid table of content', function () {
       })
       .expect(500, done);
   });
-
 });

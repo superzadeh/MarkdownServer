@@ -1,8 +1,8 @@
-var setup = require('./setup.js');
+var setup = require('../setup.js');
 var request = require('supertest');
 var assert = require('assert');
-var constants = require('../src/constants');
-var app = require('../src/app');
+var constants = require('../../src/constants');
+var app = require('../../src/app');
 
 process.env.MARKDOWN_FOLDER = 'test/markdown/';
 

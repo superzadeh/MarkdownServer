@@ -1,17 +1,17 @@
-var setup = require('./setup.js');
+var setup = require('../setup.js');
 var mockery = require('mockery');
 var request = require('supertest');
 var assert = require('assert');
 var chai = require('chai').should();
 var nock = require('nock');
-var constants = require('../src/constants');
+var constants = require('../../src/constants');
 
 process.env.MARKDOWN_EXTERNAL_ROOT = 'http://www.test.com/';
 
 describe('GET /external/*', function () {
   var app;
   before(function () {
-    app = require('../src/app');
+    app = require('../../src/app');
 
   });
   beforeEach(function () {
@@ -80,7 +80,7 @@ describe('GET /external/*', function () {
   before(function () {
     markdownRoot = process.env.MARKDOWN_EXTERNAL_ROOT;
     process.env.MARKDOWN_EXTERNAL_ROOT = '';
-    app = require('../src/app');
+    app = require('../../src/app');
   });
 
   after(function () {
@@ -110,7 +110,7 @@ describe('GET /external/* with NTLM authentication', function () {
 
     mockery.registerMock('httpntlm', {
       get: function get(opts, callback) {
-        // stub successful and failed authentication
+        // Stub successful and failed authentication
         if (opts.username === 'login' && opts.password === 'password' && opts.domain === 'domain') {
           return callback(null, {
             statusCode: 200,
@@ -124,24 +124,32 @@ describe('GET /external/* with NTLM authentication', function () {
         }
       }
     });
-    app = require('../src/app');
+    mockery.registerMock('../crypto', {
+      decrypt: function (input) {
+        return input;
+      }
+    });
+
   });
 
   after(function () {
     mockery.deregisterMock('httpntlm');
+    mockery.deregisterMock('../crypto');
     mockery.disable();
   });
 
   afterEach(function () {
-    process.env.NTLM_USERNAME = '';
-    process.env.NTLM_PASSWORD = '';
     process.env.NTLM_DOMAIN = '';
+    mockery.deregisterMock('../credentials');
   });
 
   it('should return HTML content if the authentication succeeds', function (done) {
-    process.env.NTLM_USERNAME = 'login';
-    process.env.NTLM_PASSWORD = 'password';
     process.env.NTLM_DOMAIN = 'domain';
+    mockery.registerMock('../credentials', {
+      username: 'login',
+      password: 'password'
+    });
+    app = require('../../src/app');
 
     request(app)
       .get('/external/whatever')
@@ -152,9 +160,12 @@ describe('GET /external/* with NTLM authentication', function () {
   });
 
   it('should return an error if the authentication fails (401 response)', function (done) {
-    process.env.NTLM_USERNAME = 'badlogin';
-    process.env.NTLM_PASSWORD = 'badpassword';
     process.env.NTLM_DOMAIN = 'baddomain';
+    mockery.registerMock('../credentials', {
+      username: 'badlogin',
+      password: 'badpassword'
+    });
+    app = require('../../src/app');
 
     request(app)
       .get('/external/whatever')
