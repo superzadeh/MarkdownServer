@@ -23,7 +23,8 @@ Drop files in the ./markdown folder, and access them by file name without the ex
 http://localhost:3000/example
 ```
 
-The `serve-dev`task will start nodemon to automatically restart the server if server code changes, as well as browsersync to refresh if the views or markdown files are updated.
+The `serve-dev` task (which is also the default task) will start nodemon to automatically restart the server if server code changes, 
+as well as browsersync to refresh if the views or markdown files are updated.
 This means that you can also use this as a live previewer of your markdown files.
 
 ## Hosting on IIS
@@ -78,7 +79,8 @@ simple solution to serve markdown files.
 
 ### Running tests
 
-You can run tests using `gulp test`. This will run the tests as well as a coverage analysis. There is also a watchable gulp task `gulp test-watch`. If you do not want the test coverage report, simply run `mocha` or `mocha watch`. To debug tests, `mocha --debug-brk` is available (you can then use VS Code or Node Inspector to attach to the process). You can also use `npm test` or `npm run test-watch` to simply run the mocha tasks.
+You can run tests using `npm test`. To run the tests as well as a coverage analysis, use `npm run test-cover`.
+There is also a watchable task `npm run test-watch`.
 
 Note that the coverage threshold is at 90%, so make sure your stay above it if you make changes.
 
@@ -103,10 +105,8 @@ This project is optimized for edition within [Visual Studio Code](https://code.v
 make sure to run `tsd install` to retrieve all the typings. This will provide you with
 Intellisense for the frameworks used in this project.
 
-```bash
-npm install tsd -g
-tsd install
-```
+    npm install tsd -g
+    tsd install
 
 I also recommend to use the [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
 extension that will help ensure the same coding style automatically (beautify on save is enabled).
