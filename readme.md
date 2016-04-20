@@ -95,8 +95,8 @@ Note that the coverage threshold is at 90%, so make sure your stay above it if y
 * [ ] Create a review workflow with ability to add comments
 * [ ] Add FTP support
 * [ ] Add an administration UI (or CLI client) to setup NTLM, External & FTP parameters, as well as select the default highlighter theme
-* [X] Provide a more secure way to store credentials
-* [ ] Allow users to upload files to be served
+* [X] Provide a more secure way to store credentials (still not ideal, provide a proxy based solution for auth)
+* [ ] Allow users to upload new markdown files
 * [ ] Tune performances
 
 ### Visual Studio Code
