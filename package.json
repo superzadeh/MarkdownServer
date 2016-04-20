@@ -5,9 +5,9 @@
   "main": "src/listen.js",
   "scripts": {
     "start": "gulp",
-    "test": "mocha -R spec ./test/**/*.spec.js",
-    "test-watch": "mocha watch -R nyan ./test/**/*.spec.js",
-    "test-cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/**/*.spec.js"
+    "test": "mocha --recursive -R spec",
+    "test-watch": "mocha watch --recursive -R nyan",
+    "test-cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec"
   },
   "bin": {
     "markdownserver": "./src/markdownserver-cli.js"
