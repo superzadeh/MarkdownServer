@@ -23,8 +23,6 @@
   "license": "WTFPL",
   "dependencies": {
     "bluebird": "^3.3.4",
-    "co": "^4.6.0",
-    "co-prompt": "^1.0.0",
     "commander": "^2.9.0",
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
