@@ -41,14 +41,12 @@ To host this site in IIS:
 
 ## Configuration
 
+### Local files
+
 By default, all files within the folder ./markdown will be served. This folder can be changed by 
 setting the environment variable `MARKDOWN_FOLDER`.
 
-URL requests can use NTLM authentication. To do so, set the `NTLM_DOMAIN` environment variables and run the command 
-line tool provided with markdown server to set the username and password that should be used for the NTLM authentication. 
-These credentials will be encrypted and stored in a credentials.json file at the root of the server:
-
-    markdownserver -u username -p password
+### External files
 
 To load files from an external URL, set the following environment variable:
 
@@ -62,6 +60,16 @@ will be located at MARKDOWN_ROOT_URL/filename.md. Example:
 
 Note that for IIS hosting, environment variables can be set using appSettings in the webconfig where the key is
 the name of the environment variable and the value is its value.
+
+### Authentication
+
+URL requests for external files can use NTLM authentication. To do so, set the `NTLM_DOMAIN` environment variables and run the command 
+line tool provided with markdown server to set the username and password that should be used for the NTLM authentication.
+These credentials will be encrypted and stored in a credentials.json file at the root of the server:
+
+    npm install markdownserver -g
+    markdownserver -u username -p password
+
 
 ## Contributions
 
