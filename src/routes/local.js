@@ -17,7 +17,7 @@ router.get('/:filename', (req, res) => {
     })
     .then((data) => {
         res.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
-    });
+    })
     .catch((err) => {
       res.status(200).send(`Error while processing the request, ${err}`);
     });
