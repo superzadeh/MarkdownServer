@@ -13,10 +13,11 @@ router.get('/:filename', (req, res) => {
       return fs.readFileAsync(serverFilepath, "utf8");
     })
     .then((content) => {
-      return markdownifier.markdownify(content).then((data) => {
-        res.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
-      });
+      return markdownifier.markdownify(content);
     })
+    .then((data) => {
+        res.render('markdown', { markdown: data.markdown, sidebar: data.sidebar });
+    });
     .catch((err) => {
       res.status(200).send(`Error while processing the request, ${err}`);
     });
