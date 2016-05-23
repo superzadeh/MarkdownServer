@@ -51,12 +51,12 @@ setting the environment variable `MARKDOWN_FOLDER`.
 
 To load files from an external URL, set the following environment variable:
 
-* MARKDOWN_ROOT_URL
+* MARKDOWN_EXTERNAL_ROOT
 
 You can then access the files using `http://localhost:3000/external/filename`, where the file loaded
-will be located at MARKDOWN_ROOT_URL/filename.md. Example:
+will be located at MARKDOWN_EXTERNAL_ROOT/filename.md. Example:
 
-* If MARKDOWN_ROOT_URL is `http://google.com/`, then `http://localhost:3000/external/filename` will load the 
+* If MARKDOWN_EXTERNAL_ROOT is `http://google.com/`, then `http://localhost:3000/external/filename` will load the 
   file at the url `http://google.com/filename.md`.
 
 Note that for IIS hosting, environment variables can be set using appSettings in the webconfig where the key is
