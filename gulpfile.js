@@ -40,6 +40,6 @@ gulp.task('build', ['build-ui'], function () {
   ]).pipe(gulp.dest('./public/dist'));
 });
 
-gulp.task('serve-dev', ['browser-sync', 'watch-ui']);
-gulp.task('serve-build', ['build', 'browser-sync', 'watch-ui']);
-gulp.task('default', ['serve-dev']);
+gulp.task('serve', ['browser-sync', 'watch-ui']);
+gulp.task('build-serve', ['build', 'browser-sync', 'watch-ui']);
+gulp.task('default', ['serve']);

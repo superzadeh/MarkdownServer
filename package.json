@@ -1,7 +1,7 @@
 {
   "name": "markdownserver",
-  "version": "2.0.0",
-  "description": "Simple markdown server with highlighting",
+  "version": "2.1.0",
+  "description": "Simple markdown server with code syntax highlighting",
   "main": "src/listen.js",
   "scripts": {
     "start": "gulp",
