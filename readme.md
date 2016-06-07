@@ -31,7 +31,7 @@ http://localhost:3000/example
 The following gulp tasks are available:
 
 | Task name         | Description |
------------------------------------
+|-------------------|-------------|
 | gulp              | run the `serve` task |
 | gulp serve        | starts serving using browser sync and watches for views/markdown changes |
 | gulp build        | builds semantic UI and deploys dependencies to the `public/dist` folder |
