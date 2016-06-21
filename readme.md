@@ -7,23 +7,37 @@ A simple HTTP server that serves markdown files.
 
 ## Usage
 
-Install dependencies, then start the server.
+Install dependencies, build, then start the server with `gulp`.
 
 ```bash
 git clone https://github.com/superzadeh/MarkdownServer
 cd MarkdownServer
 npm install gulp -g
 npm install
-gulp serve-build
+gulp build
+gulp
 ```
 
 Drop files in the ./markdown folder, and access them by file name without the extension.
+
+If you need to serve images, you can drop them in the `public/images` folder. To reference them in a markdown document, simply use `images/your_image.png` as source.
 
 ```bash
 http://localhost:3000/example
 ```
 
-The `serve-dev` task (which is also the default task) will start nodemon to automatically restart the server if server code changes, 
+### Gulp tasks
+
+The following gulp tasks are available:
+
+| Task name         | Description |
+|-------------------|-------------|
+| gulp              | run the `serve` task |
+| gulp serve        | starts serving using browser sync and watches for views/markdown changes |
+| gulp build        | builds semantic UI and deploys dependencies to the `public/dist` folder |
+| gulp serve-build  | runs `build` and `serve` |
+
+The `serve` task (which is also the default `gulp` task) will start nodemon to automatically restart the server if server code changes, 
 as well as browsersync to refresh if the views or markdown files are updated.
 This means that you can also use this as a live previewer of your markdown files.
 
@@ -51,12 +65,12 @@ setting the environment variable `MARKDOWN_FOLDER`.
 
 To load files from an external URL, set the following environment variable:
 
-* MARKDOWN_ROOT_URL
+* MARKDOWN_EXTERNAL_ROOT
 
 You can then access the files using `http://localhost:3000/external/filename`, where the file loaded
-will be located at MARKDOWN_ROOT_URL/filename.md. Example:
+will be located at MARKDOWN_EXTERNAL_ROOT/filename.md. Example:
 
-* If MARKDOWN_ROOT_URL is `http://google.com/`, then `http://localhost:3000/external/filename` will load the 
+* If MARKDOWN_EXTERNAL_ROOT is `http://google.com/`, then `http://localhost:3000/external/filename` will load the 
   file at the url `http://google.com/filename.md`.
 
 Note that for IIS hosting, environment variables can be set using appSettings in the webconfig where the key is

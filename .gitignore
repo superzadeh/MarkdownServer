@@ -1,6 +1,7 @@
 # Application specific
 credentials.json
 markdown
+public/images
 
 # NodeJS
 node_modules
