@@ -38,7 +38,8 @@ gulp.task('build', ['build-ui'], function () {
     './node_modules/jquery/dist/jquery.min.js',
     './node_modules/highlightjs/highlight.pack.min.js',
     './node_modules/underscore/underscore-min.js',
-    './node_modules/raphael/raphael.min.js'
+    './node_modules/raphael/raphael.min.js',
+    './node_modules/lib/sequence-diagram-min.js'
   ]).pipe(gulp.dest('./public/dist'));
 });
 
