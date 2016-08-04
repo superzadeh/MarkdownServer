@@ -112,6 +112,7 @@ Note that the coverage threshold is at 90%, so make sure your stay above it if y
 * [X] Provide a more secure way to store credentials (still not ideal, provide a proxy based solution for auth)
 * [ ] Allow users to upload new markdown files
 * [ ] Tune performances
+* [ ] Reorganize mocks and nocks to make them easier to reuse/maintain 
 
 ### Visual Studio Code
 

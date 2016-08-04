@@ -36,7 +36,9 @@ gulp.task('nodemon', function (cb) {
 gulp.task('build', ['build-ui'], function () {
   return gulp.src([
     './node_modules/jquery/dist/jquery.min.js',
-    './node_modules/highlightjs/highlight.pack.min.js'
+    './node_modules/highlightjs/highlight.pack.min.js',
+    './node_modules/underscore/underscore-min.js',
+    './node_modules/raphael/raphael.min.js'
   ]).pipe(gulp.dest('./public/dist'));
 });
 
