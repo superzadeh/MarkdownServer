@@ -1,6 +1,6 @@
 {
   "name": "markdownserver",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Simple markdown server with code syntax highlighting",
   "main": "src/listen.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "name": "Superzadeh",
     "email": "superzadeh@outlook.com"
   },
-  "license": "WTFPL",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.3.4",
     "commander": "^2.9.0",
