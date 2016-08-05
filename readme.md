@@ -7,13 +7,13 @@ A simple HTTP server that serves markdown files.
 
 ## Supported Syntax
 
-[GFM (Github Flavor Markdown)](https://guides.github.com/features/mastering-markdown/) is partially supported, only task lists and SHA References are not done yet. Code is highlighted using [HighlightJS](https://highlightjs.org/), and Diagrams and rendered using [js-sequence-diagrams](https://bramp.github.io/js-sequence-diagrams/)
+[GFM (Github Flavor Markdown)](https://guides.github.com/features/mastering-markdown/) is partially supported, only task lists and SHA References are not done yet. Code is highlighted using [HighlightJS](https://highlightjs.org/), and Diagrams and rendered using [js-sequence-diagrams](https://bramp.github.io/js-sequence-diagrams/).
 
 If you find any issues, please report them in the [issues](https://github.com/superzadeh/MarkdownServer/issues) section of this repo. 
 
-## Usage
+## Installation
 
-Install dependencies, build, then start the server with `gulp`.
+Install dependencies, build, then start the development server with `gulp`.
 
 ```bash
 git clone https://github.com/superzadeh/MarkdownServer
