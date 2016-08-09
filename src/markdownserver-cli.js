@@ -10,8 +10,7 @@ var credentials = {
 };
 
 program
-  .version('0.1.2')
-  .command('configure')
+  .version('0.1.3')
   .description('Interactive mode to configure the server')
   .action(() => {
     //TODO: use co and co-prompt to retrieve the username, password, domain and external URI 
