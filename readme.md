@@ -43,7 +43,7 @@ The following gulp tasks are available:
 | gulp              | run the `serve` task |
 | gulp serve        | starts serving using browser sync and watches for views/markdown changes |
 | gulp build        | builds semantic UI and deploys dependencies to the `public/dist` folder |
-| gulp serve-build  | runs `build` and `serve` |
+| gulp build-serve  | runs `build` and `serve` |
 
 The `serve` task (which is also the default `gulp` task) will start nodemon to automatically restart the server if server code changes, 
 as well as browsersync to refresh if the views or markdown files are updated.
