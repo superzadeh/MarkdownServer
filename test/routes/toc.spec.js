@@ -46,7 +46,7 @@ describe('GET /toc with a valid table of content', function () {
       .expect(function (res) {
         res.body.should.eql([{
           content: 'Title 1 ## Title 2',
-          slug: 'title-1----title-2',
+          slug: 'title-1-##-title-2',
           lvl: 1,
           i: 0,
           seen: 0
