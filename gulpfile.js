@@ -1,3 +1,10 @@
+// Hack for ubuntu on Windows
+try {   
+  require('os').networkInterfaces() 
+} catch (e) {   
+  require('os').networkInterfaces = () => ({}) 
+}
+
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
