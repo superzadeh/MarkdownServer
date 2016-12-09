@@ -20,7 +20,7 @@ gulp.task('watch-ui', watchSemantic);
 
 gulp.task('browser-sync', ['nodemon'], function () {
   browserSync.init(null, {
-    proxy: 'http://localhost:3000',
+    proxy: 'http://localhost:3337',
     files: ['public/**/*.*', 'views/**/*.*', markdownFolder + '**/*.*'],
     browser: 'google chrome',
     port: 7000,

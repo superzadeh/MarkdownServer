@@ -21,7 +21,7 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 
 // Configuration
 // TODO: refactor with nconf
-app.set(constants.PORT, process.env.PORT || 3000);
+app.set(constants.PORT, process.env.PORT || 3337);
 app.set(constants.MARKDOWN_FOLDER, process.env.MARKDOWN_FOLDER || './markdown/');
 process.env.MARKDOWN_FOLDER = process.env.MARKDOWN_FOLDER ? process.env.MARKDOWN_FOLDER : './markdown/';
 

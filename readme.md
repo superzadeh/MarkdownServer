@@ -31,7 +31,7 @@ Drop files in the ./markdown folder, and access them by file name without the ex
 If you need to serve images, you can drop them in the `public/images` folder. To reference them in a markdown document, simply use `images/your_image.png` as source.
 
 ```bash
-http://localhost:3000/example
+http://localhost:3337/example
 ```
 
 ### Gulp tasks
@@ -75,10 +75,10 @@ To load files from an external URL, set the following environment variable:
 
 * MARKDOWN_EXTERNAL_ROOT
 
-You can then access the files using `http://localhost:3000/external/filename`, where the file loaded
+You can then access the files using `http://localhost:3337/external/filename`, where the file loaded
 will be located at MARKDOWN_EXTERNAL_ROOT/filename.md. Example:
 
-* If MARKDOWN_EXTERNAL_ROOT is `http://google.com/`, then `http://localhost:3000/external/filename` will load the 
+* If MARKDOWN_EXTERNAL_ROOT is `http://google.com/`, then `http://localhost:3337/external/filename` will load the 
   file at the url `http://google.com/filename.md`.
 
 Note that for IIS hosting, environment variables can be set using appSettings in the webconfig where the key is
