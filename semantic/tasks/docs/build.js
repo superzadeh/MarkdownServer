@@ -18,7 +18,7 @@ var
   gulpif       = require('gulp-if'),
   header       = require('gulp-header'),
   less         = require('gulp-less'),
-  minifyCSS    = require('gulp-clean-css'),
+  minifyCSS    = require('gulp-minify-css'),
   plumber      = require('gulp-plumber'),
   print        = require('gulp-print'),
   rename       = require('gulp-rename'),

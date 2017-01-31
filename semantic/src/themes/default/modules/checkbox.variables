@@ -162,7 +162,6 @@
 
 @toggleLaneBackground: @transparentBlack;
 @toggleLaneHeight: @toggleHandleSize;
-@toggleLaneBoxShadow: none;
 @toggleLaneVerticalOffset: 0rem;
 @toggleOffOffset: -0.05rem;
 @toggleOnOffset: (@toggleLaneWidth - @toggleHandleSize) + 0.15rem;
@@ -176,12 +175,9 @@
 @toggleHoverColor: @toggleFocusColor;
 
 @toggleOffLabelColor: @checkboxColor;
-@toggleOffHandleBoxShadow: none;
 
 @toggleOnLabelColor: @selectedTextColor;
 @toggleOnLaneColor: @primaryColor;
-
-@toggleOnHandleBoxShadow: none;
 
 @toggleOnFocusLaneColor: @primaryColorFocus;
 @toggleOnFocusLabelColor: @toggleOnLabelColor;

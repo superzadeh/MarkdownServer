@@ -545,6 +545,7 @@ $.fn.transition = function() {
                 animation : animation
               });
             }
+            return $.fn.transition.settings;
           },
           animationClass: function(animation) {
             var
@@ -612,15 +613,11 @@ $.fn.transition = function() {
               : duration
             ;
           },
-          displayType: function(shouldDetermine) {
-            shouldDetermine = (shouldDetermine !== undefined)
-              ? shouldDetermine
-              : true
-            ;
+          displayType: function() {
             if(settings.displayType) {
               return settings.displayType;
             }
-            if(shouldDetermine && $module.data(metadata.displayType) === undefined) {
+            if($module.data(metadata.displayType) === undefined) {
               // create fake element to determine display state
               module.can.transition(true);
             }
@@ -677,13 +674,13 @@ $.fn.transition = function() {
             var
               animation         = settings.animation,
               transitionExists  = module.get.transitionExists(animation),
-              displayType       = module.get.displayType(false),
               elementClass,
               tagName,
               $clone,
               currentAnimation,
               inAnimation,
-              directionExists
+              directionExists,
+              displayType
             ;
             if( transitionExists === undefined || forced) {
               module.verbose('Determining whether animation exists');
@@ -703,18 +700,16 @@ $.fn.transition = function() {
                 .addClass(className.inward)
                 .css('animationName')
               ;
-              if(!displayType) {
-                displayType = $clone
-                  .attr('class', elementClass)
-                  .removeAttr('style')
-                  .removeClass(className.hidden)
-                  .removeClass(className.visible)
-                  .show()
-                  .css('display')
-                ;
-                module.verbose('Determining final display state', displayType);
-                module.save.displayType(displayType);
-              }
+              displayType = $clone
+                .attr('class', elementClass)
+                .removeAttr('style')
+                .removeClass(className.hidden)
+                .removeClass(className.visible)
+                .show()
+                .css('display')
+              ;
+              module.verbose('Determining final display state', displayType);
+              module.save.displayType(displayType);
 
               $clone.remove();
               if(currentAnimation != inAnimation) {
