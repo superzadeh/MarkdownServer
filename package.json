@@ -1,6 +1,6 @@
 {
   "name": "markdownserver",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Simple markdown server with code syntax highlighting",
   "main": "src/listen.js",
   "scripts": {
