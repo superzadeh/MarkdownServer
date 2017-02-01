@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/superzadeh/MarkdownServer.svg?branch=master)](https://travis-ci.org/superzadeh/MarkdownServer)
 [![Coverage Status](https://coveralls.io/repos/github/superzadeh/MarkdownServer/badge.svg?branch=master)](https://coveralls.io/github/superzadeh/MarkdownServer?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/superzadeh/markdownserver/badge.svg)](https://snyk.io/test/github/superzadeh/markdownserver)
 
 A simple HTTP server that serves markdown files.
 
