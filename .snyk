@@ -34,3 +34,8 @@ patch:
   'npm:uglify-js:20150824':
     - jade > transformers > uglify-js:
         patched: '2017-02-01T12:20:04.953Z'
+  'npm:marked:20170112':
+    - marked:
+        patched: '2017-02-10T14:36:38.304Z'
+    - semantic-ui > gulp-notify > node-notifier > cli-usage > marked:
+        patched: '2017-02-10T14:36:38.304Z'
