@@ -39,3 +39,6 @@ patch:
         patched: '2017-02-10T14:36:38.304Z'
     - semantic-ui > gulp-notify > node-notifier > cli-usage > marked:
         patched: '2017-02-10T14:36:38.304Z'
+  'npm:ms:20170412':
+    - morgan > debug > ms:
+        patched: '2017-05-22T04:06:12.675Z'
